@@ -2,10 +2,10 @@
 
 namespace AvtoDev\EventsLogLaravel\Tests;
 
-use AvtoDev\EventsLogLaravel\Tests\Bootstrap\TestsBootstrapper;
 use Illuminate\Foundation\Application;
 use AvtoDev\EventsLogLaravel\EventsLogServiceProvider;
 use AvtoDev\DevTools\Tests\PHPUnit\AbstractLaravelTestCase;
+use AvtoDev\EventsLogLaravel\Tests\Bootstrap\TestsBootstrapper;
 
 /**
  * Class AbstractTestCase.

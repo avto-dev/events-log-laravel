@@ -1,15 +1,15 @@
 <?php
 
-declare(strict_types = 1);
+declare(strict_types=1);
 
 namespace AvtoDev\EventsLogLaravel\Logging;
 
-use AvtoDev\EventsLogLaravel\Contracts\LoggerContract;
-use Monolog\Formatter\LogstashFormatter;
+use Exception;
 use Monolog\Logger;
 use Monolog\Handler\StreamHandler;
+use Monolog\Formatter\LogstashFormatter;
+use AvtoDev\EventsLogLaravel\Contracts\LoggerContract;
 use AvtoDev\EventsLogLaravel\Logging\Formatters\LogLogstashFormatter;
-use Exception;
 
 class DefaultLogstashLogger implements LoggerContract
 {

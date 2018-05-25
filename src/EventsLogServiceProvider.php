@@ -1,17 +1,17 @@
 <?php
 
-declare(strict_types = 1);
+declare(strict_types=1);
 
 namespace AvtoDev\EventsLogLaravel;
 
-use AvtoDev\EventsLogLaravel\Contracts\EventsSubscriberContract;
-use AvtoDev\EventsLogLaravel\Listeners\EventsSubscriber;
-use Illuminate\Config\Repository as ConfigRepository;
+use UnexpectedValueException;
+use Illuminate\Log\LogManager;
+use Illuminate\Events\Dispatcher;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Contracts\Foundation\Application;
-use Illuminate\Log\LogManager;
-use UnexpectedValueException;
-use Illuminate\Events\Dispatcher;
+use Illuminate\Config\Repository as ConfigRepository;
+use AvtoDev\EventsLogLaravel\Listeners\EventsSubscriber;
+use AvtoDev\EventsLogLaravel\Contracts\EventsSubscriberContract;
 
 class EventsLogServiceProvider extends ServiceProvider
 {

@@ -1,14 +1,14 @@
 <?php
 
-declare(strict_types = 1);
+declare(strict_types=1);
 
 namespace AvtoDev\EventsLogLaravel\Listeners;
 
-use AvtoDev\EventsLogLaravel\Contracts\EventsSubscriberContract;
-use AvtoDev\EventsLogLaravel\Contracts\ShouldBeLoggedContract;
-use Illuminate\Contracts\Events\Dispatcher;
-use Illuminate\Log\LogManager;
 use Psr\Log\LoggerInterface;
+use Illuminate\Log\LogManager;
+use Illuminate\Contracts\Events\Dispatcher;
+use AvtoDev\EventsLogLaravel\Contracts\ShouldBeLoggedContract;
+use AvtoDev\EventsLogLaravel\Contracts\EventsSubscriberContract;
 
 class EventsSubscriber implements EventsSubscriberContract
 {
