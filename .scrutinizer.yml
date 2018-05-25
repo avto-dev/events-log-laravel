@@ -1,0 +1,46 @@
+filter:
+  excluded_paths:
+    - 'tests/*'
+
+checks:
+  php:
+    code_rating: true
+    duplication: true
+
+build:
+  environment:
+    mysql: false
+    postgresql: false
+    mongodb: false
+    elasticsearch: false
+    redis: false
+    memcached: false
+    neo4j: false
+    rabbitmq: false
+
+  nodes:
+    php71:
+      environment:
+        php: 7.1
+      tests:
+        override:
+          -
+            command: 'vendor/bin/phpstan analyse --level=7 ./src'
+          -
+            command: 'vendor/bin/phpunit --coverage-clover=clover-file'
+            coverage:
+              file: 'clover-file'
+              format: 'clover'
+
+    php72:
+      environment:
+        php: 7.2
+      tests:
+        override:
+          -
+            command: 'vendor/bin/phpstan analyse --level=7 ./src'
+          -
+            command: 'vendor/bin/phpunit --coverage-clover=clover-file'
+            coverage:
+              file: 'clover-file'
+              format: 'clover'
