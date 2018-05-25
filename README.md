@@ -58,12 +58,12 @@ $ composer phpstan
 [badge_downloads_count]:https://img.shields.io/packagist/dt/avto-dev/events-log-laravel.svg?style=flat&maxAge=30
 [badge_license]:https://img.shields.io/packagist/l/avto-dev/events-log-laravel.svg?style=flat&maxAge=30
 [badge_build_status]:https://scrutinizer-ci.com/g/avto-dev/events-log-laravel/badges/build.png?b=master
-[badge_styleci]:https://styleci.io/repos/none/shield
+[badge_styleci]:https://styleci.io/repos/134873016/shield
 [badge_coverage]:https://scrutinizer-ci.com/g/avto-dev/events-log-laravel/badges/coverage.png?b=master
 [badge_quality]:https://scrutinizer-ci.com/g/avto-dev/events-log-laravel/badges/quality-score.png?b=master
 [badge_issues]:https://img.shields.io/github/issues/avto-dev/events-log-laravel.svg?style=flat&maxAge=30
 [link_packagist]:https://packagist.org/packages/avto-dev/events-log-laravel
-[link_styleci]:https://styleci.io/repos/none/
+[link_styleci]:https://styleci.io/repos/134873016/
 [link_license]:https://github.com/avto-dev/events-log-laravel/blob/master/LICENSE
 [link_build_status]:https://scrutinizer-ci.com/g/avto-dev/events-log-laravel/build-status/master
 [link_coverage]:https://scrutinizer-ci.com/g/avto-dev/events-log-laravel/?branch=master

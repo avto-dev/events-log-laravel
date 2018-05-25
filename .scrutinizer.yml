@@ -8,6 +8,10 @@ checks:
     duplication: true
 
 build:
+  project_setup:
+    before:
+      - php-scrutinizer-run
+
   environment:
     mysql: false
     postgresql: false
@@ -25,7 +29,7 @@ build:
       tests:
         override:
           -
-            command: 'vendor/bin/phpstan analyse --level=7 ./src'
+            command: 'composer phpstan'
           -
             command: 'vendor/bin/phpunit --coverage-clover=clover-file'
             coverage:
@@ -38,7 +42,7 @@ build:
       tests:
         override:
           -
-            command: 'vendor/bin/phpstan analyse --level=7 ./src'
+            command: 'composer phpstan'
           -
             command: 'vendor/bin/phpunit --coverage-clover=clover-file'
             coverage:
