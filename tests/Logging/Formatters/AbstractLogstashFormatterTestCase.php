@@ -2,8 +2,8 @@
 
 namespace AvtoDev\EventsLogLaravel\Tests\Logging\Formatters;
 
-use AvtoDev\EventsLogLaravel\Tests\AbstractTestCase;
 use Monolog\Formatter\LogstashFormatter;
+use AvtoDev\EventsLogLaravel\Tests\AbstractTestCase;
 use AvtoDev\EventsLogLaravel\Logging\Formatters\AbstractLogstashFormatter;
 
 /**

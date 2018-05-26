@@ -12,7 +12,6 @@ use AvtoDev\EventsLogLaravel\Tests\Bootstrap\TestsBootstrapper;
  */
 trait LogFilesAssertsTrait
 {
-
     /**
      * Make logs directory cleaning (remove all files and directories inside).
      *
@@ -24,20 +23,6 @@ trait LogFilesAssertsTrait
 
         $files->cleanDirectory($path = TestsBootstrapper::getStorageDirectoryPath() . '/logs');
         $files->put($path . '/laravel.log', null);
-    }
-
-    /**
-     * Get the log file content.
-     *
-     * @param string $file
-     *
-     * @return bool|string
-     */
-    protected function getLogFileContent(string $file = 'laravel.log')
-    {
-        $file_path = TestsBootstrapper::getStorageDirectoryPath() . '/logs/' . ltrim($file, '\\\/');
-
-        return file_get_contents($file_path);
     }
 
     /**
@@ -68,5 +53,19 @@ trait LogFilesAssertsTrait
         $content = $this->getLogFileContent($file);
 
         $this->assertNotContains($substring, $content, "Log file [{$file}] contains [{$substring}]");
+    }
+
+    /**
+     * Get the log file content.
+     *
+     * @param string $file
+     *
+     * @return bool|string
+     */
+    protected function getLogFileContent(string $file = 'laravel.log')
+    {
+        $file_path = TestsBootstrapper::getStorageDirectoryPath() . '/logs/' . ltrim($file, '\\\/');
+
+        return file_get_contents($file_path);
     }
 }

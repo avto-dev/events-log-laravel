@@ -2,10 +2,10 @@
 
 namespace AvtoDev\EventsLogLaravel\Tests\Contracts;
 
-use AvtoDev\EventsLogLaravel\Contracts\EventsSubscriberContract;
+use AvtoDev\EventsLogLaravel\Tests\AbstractTestCase;
 use AvtoDev\EventsLogLaravel\Contracts\LoggerContract;
 use AvtoDev\EventsLogLaravel\Contracts\ShouldBeLoggedContract;
-use AvtoDev\EventsLogLaravel\Tests\AbstractTestCase;
+use AvtoDev\EventsLogLaravel\Contracts\EventsSubscriberContract;
 
 class ContractsTest extends AbstractTestCase
 {

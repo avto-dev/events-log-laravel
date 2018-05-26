@@ -2,9 +2,9 @@
 
 namespace AvtoDev\EventsLogLaravel\Tests;
 
-use AvtoDev\EventsLogLaravel\Contracts\EventsSubscriberContract;
-use AvtoDev\EventsLogLaravel\Listeners\EventsSubscriber;
 use UnexpectedValueException;
+use AvtoDev\EventsLogLaravel\Listeners\EventsSubscriber;
+use AvtoDev\EventsLogLaravel\Contracts\EventsSubscriberContract;
 
 class EventsLogServiceProviderTest extends AbstractTestCase
 {
@@ -15,7 +15,7 @@ class EventsLogServiceProviderTest extends AbstractTestCase
      */
     public function testServiceProviderLoading()
     {
-        /** @see AbstractTestCase::afterApplicationBootstrapped */
+        /* @see AbstractTestCase::afterApplicationBootstrapped */
         $this->assertEquals('default', $this->app->make('log.events.channel'));
 
         $this->assertInstanceOf(EventsSubscriber::class, $this->app->make(EventsSubscriberContract::class));

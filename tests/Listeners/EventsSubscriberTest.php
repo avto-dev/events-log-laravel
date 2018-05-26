@@ -2,11 +2,11 @@
 
 namespace AvtoDev\EventsLogLaravel\Tests\Listeners;
 
-use AvtoDev\EventsLogLaravel\Listeners\EventsSubscriber;
+use Illuminate\Support\Str;
+use Illuminate\Log\LogManager;
 use AvtoDev\EventsLogLaravel\Tests\AbstractTestCase;
 use Illuminate\Config\Repository as ConfigRepository;
-use Illuminate\Log\LogManager;
-use Illuminate\Support\Str;
+use AvtoDev\EventsLogLaravel\Listeners\EventsSubscriber;
 
 class EventsSubscriberTest extends AbstractTestCase
 {
@@ -78,7 +78,7 @@ class EventsSubscriberTest extends AbstractTestCase
             ->expects($this->once())
             ->method($write_log_method_name);
 
-        /** @var $mock EventsSubscriber */
+        /* @var $mock EventsSubscriber */
         $mock->onAnyEvents(\get_class($event), [$event]);
     }
 
@@ -101,7 +101,7 @@ class EventsSubscriberTest extends AbstractTestCase
             ->expects($this->never())
             ->method($write_log_method_name);
 
-        /** @var $mock EventsSubscriber */
+        /* @var $mock EventsSubscriber */
         $mock->onAnyEvents(\get_class($event), [$event]);
     }
 
@@ -152,7 +152,7 @@ class EventsSubscriberTest extends AbstractTestCase
                 ->method('logLevel')
                 ->will($this->returnValue($level_name));
 
-            /** @var Stubs\LoggableEventStub $mock */
+            /* @var Stubs\LoggableEventStub $mock */
             try {
                 $instance->writeEventIntoLog($mock);
 
@@ -163,7 +163,7 @@ class EventsSubscriberTest extends AbstractTestCase
             } catch (\Error $e) {
                 $this->assertStringStartsWith('Call to undefined method', $e->getMessage());
 
-                ++$exceptions_counter;
+                $exceptions_counter++;
             }
         }
 

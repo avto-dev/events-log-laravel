@@ -2,12 +2,12 @@
 
 namespace AvtoDev\EventsLogLaravel\Tests\Logging;
 
-use AvtoDev\EventsLogLaravel\Tests\AbstractTestCase;
 use Monolog\Logger;
-use AvtoDev\EventsLogLaravel\Logging\DefaultLogstashLogger;
 use Monolog\Handler\StreamHandler;
 use Monolog\Handler\HandlerInterface;
 use Monolog\Formatter\LogstashFormatter;
+use AvtoDev\EventsLogLaravel\Tests\AbstractTestCase;
+use AvtoDev\EventsLogLaravel\Logging\DefaultLogstashLogger;
 
 /**
  * Class DefaultLogstashLoggerTest.
