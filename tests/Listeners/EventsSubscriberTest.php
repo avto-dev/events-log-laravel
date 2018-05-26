@@ -7,6 +7,7 @@ use Illuminate\Log\LogManager;
 use AvtoDev\EventsLogLaravel\Tests\AbstractTestCase;
 use Illuminate\Config\Repository as ConfigRepository;
 use AvtoDev\EventsLogLaravel\Listeners\EventsSubscriber;
+use Psr\Log\LoggerInterface;
 
 class EventsSubscriberTest extends AbstractTestCase
 {
@@ -27,6 +28,19 @@ class EventsSubscriberTest extends AbstractTestCase
         ]);
 
         $this->clearLog();
+    }
+
+    /**
+     * Test constructor without passing log channel name.
+     *
+     * @return void
+     */
+    public function testConstructWithoutChannelName(): void
+    {
+        $subscriber = new EventsSubscriber($this->app->make(LogManager::class));
+
+        $this->assertLogFileNotContains('Using emergency logger');
+        $this->assertInstanceOf(LoggerInterface::class, $subscriber->logDriver());
     }
 
     /**

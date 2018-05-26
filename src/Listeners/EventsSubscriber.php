@@ -20,20 +20,30 @@ class EventsSubscriber implements EventsSubscriberContract
     /**
      * Logger channel name, declared in `./config/logging.php['events_channel']`.
      *
-     * @var string
+     * @var string|null
      */
     protected $logger_channel_name;
 
     /**
      * EventsLoggerSubscriber constructor.
      *
-     * @param LogManager $log_manager
-     * @param string     $logger_channel_name
+     * @param LogManager  $log_manager
+     * @param string|null $logger_channel_name
      */
-    public function __construct(LogManager $log_manager, string $logger_channel_name)
+    public function __construct(LogManager $log_manager, ?string $logger_channel_name = null)
     {
         $this->logger_channel_name = $logger_channel_name;
         $this->log_driver          = $log_manager->driver($this->logger_channel_name);
+    }
+
+    /**
+     * Returns logger.
+     *
+     * @return LoggerInterface
+     */
+    public function logDriver()
+    {
+        return $this->log_driver;
     }
 
     /**

@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace AvtoDev\EventsLogLaravel;
 
-use UnexpectedValueException;
 use Illuminate\Log\LogManager;
 use Illuminate\Events\Dispatcher;
 use Illuminate\Support\ServiceProvider;
@@ -50,8 +49,6 @@ class EventsLogServiceProvider extends ServiceProvider
     /**
      * Register events logging channel name.
      *
-     * @throws UnexpectedValueException
-     *
      * @return void
      */
     protected function registerChannel(): void
@@ -60,13 +57,10 @@ class EventsLogServiceProvider extends ServiceProvider
             /** @var ConfigRepository $config */
             $config = $this->app->make('config');
 
-            $channel_name = $config->get($config_key = 'logging.events_channel', env('EVENTS_LOG_CHANNEL'));
-
-            if (! \is_string($channel_name) || empty($channel_name)) {
-                throw new UnexpectedValueException("Missed config value [{$config_key}]");
-            }
-
-            $this->app->instance($this->channel_abstract, $channel_name);
+            $this->app->instance(
+                $this->channel_abstract,
+                $config->get('logging.events_channel', env('EVENTS_LOG_CHANNEL'))
+            );
         }
     }
 
@@ -78,7 +72,10 @@ class EventsLogServiceProvider extends ServiceProvider
     protected function registerSubscriber(): void
     {
         $this->app->bind(EventsSubscriberContract::class, function (Application $app) {
-            return new EventsSubscriber($app->make(LogManager::class), $app->make($this->channel_abstract));
+            return new EventsSubscriber(
+                $app->make(LogManager::class),
+                $app->make($this->channel_abstract)
+            );
         });
     }
 }
