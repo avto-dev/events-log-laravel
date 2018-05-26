@@ -3,11 +3,11 @@
 namespace AvtoDev\EventsLogLaravel\Tests\Listeners;
 
 use Illuminate\Support\Str;
+use Psr\Log\LoggerInterface;
 use Illuminate\Log\LogManager;
 use AvtoDev\EventsLogLaravel\Tests\AbstractTestCase;
 use Illuminate\Config\Repository as ConfigRepository;
 use AvtoDev\EventsLogLaravel\Listeners\EventsSubscriber;
-use Psr\Log\LoggerInterface;
 
 class EventsSubscriberTest extends AbstractTestCase
 {
