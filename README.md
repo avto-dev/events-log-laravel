@@ -10,6 +10,7 @@
 [![Coverage][badge_coverage]][link_coverage]
 [![Code Quality][badge_quality]][link_coverage]
 [![Issues][badge_issues]][link_issues]
+![PHP version][badge_php_version]
 [![License][badge_license]][link_license]
 [![Downloads count][badge_downloads_count]][link_packagist]
 
@@ -55,6 +56,7 @@ $ composer phpstan
 Код данного пакета распространяется под лицензией [MIT][link_license].
 
 [badge_version]:https://img.shields.io/packagist/v/avto-dev/events-log-laravel.svg?style=flat&maxAge=30
+[badge_php_version]:https://img.shields.io/packagist/php-v/avto-dev/events-log-laravel.svg?style=flat&maxAge=30
 [badge_downloads_count]:https://img.shields.io/packagist/dt/avto-dev/events-log-laravel.svg?style=flat&maxAge=30
 [badge_license]:https://img.shields.io/packagist/l/avto-dev/events-log-laravel.svg?style=flat&maxAge=30
 [badge_build_status]:https://scrutinizer-ci.com/g/avto-dev/events-log-laravel/badges/build.png?b=master

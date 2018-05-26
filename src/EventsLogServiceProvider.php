@@ -77,7 +77,7 @@ class EventsLogServiceProvider extends ServiceProvider
      */
     protected function registerSubscriber(): void
     {
-        $this->app->singleton(EventsSubscriberContract::class, function (Application $app) {
+        $this->app->bind(EventsSubscriberContract::class, function (Application $app) {
             return new EventsSubscriber($app->make(LogManager::class), $app->make($this->channel_abstract));
         });
     }

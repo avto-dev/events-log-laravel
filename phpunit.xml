@@ -28,7 +28,4 @@
         <log type="coverage-clover" target="./coverage/clover.xml"/>
         <log type="coverage-text" target="php://stdout" showUncoveredFiles="false"/>
     </logging>
-    <php>
-        <env name="EVENTS_LOG_CHANNEL" value="default"/>
-    </php>
 </phpunit>

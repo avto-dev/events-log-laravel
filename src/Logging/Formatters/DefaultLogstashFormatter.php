@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace AvtoDev\EventsLogLaravel\Logging\Formatters;
 
-class LogLogstashFormatter extends AbstractLogstashFormatter
+class DefaultLogstashFormatter extends AbstractLogstashFormatter
 {
     /**
      * {@inheritdoc}
