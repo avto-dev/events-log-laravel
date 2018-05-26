@@ -41,7 +41,7 @@ class EventsLogServiceProvider extends ServiceProvider
      */
     protected function registerChannel(): void
     {
-        $this->app->bind('log.events.channel', function (Application $app): string {
+        $this->app->bind('log.events.channel', function (Application $app) {
             return $app->make('config')->get('logging.events_channel', env('EVENTS_LOG_CHANNEL'));
         });
     }
