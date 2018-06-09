@@ -1,6 +1,8 @@
 filter:
   excluded_paths:
-    - 'tests/*'
+    - tests/
+  dependency_paths:
+    - vendor/
 
 checks:
   php:
@@ -8,10 +10,6 @@ checks:
     duplication: true
 
 build:
-  project_setup:
-    before:
-      - php-scrutinizer-run
-
   environment:
     mysql: false
     postgresql: false
@@ -22,29 +20,39 @@ build:
     neo4j: false
     rabbitmq: false
 
+  tests:
+    override:
+      -
+        command: 'vendor/bin/phpunit --coverage-clover=clover-file'
+        coverage:
+          file: 'clover-file'
+          format: 'clover'
+    after:
+      - php-scrutinizer-run --enable-security-analysis
+
+  dependencies:
+    override:
+      - composer update --no-interaction
+
   nodes:
+    php71-lowest:
+      environment:
+        php: 7.1
+      dependencies:
+        override:
+          - composer update --no-interaction --prefer-lowest
+
     php71:
       environment:
         php: 7.1
-      tests:
+
+    php72-lowest:
+      environment:
+        php: 7.2
+      dependencies:
         override:
-          -
-            command: 'composer phpstan'
-          -
-            command: 'vendor/bin/phpunit --coverage-clover=clover-file'
-            coverage:
-              file: 'clover-file'
-              format: 'clover'
+          - composer update --no-interaction --prefer-lowest
 
     php72:
       environment:
         php: 7.2
-      tests:
-        override:
-          -
-            command: 'composer phpstan'
-          -
-            command: 'vendor/bin/phpunit --coverage-clover=clover-file'
-            coverage:
-              file: 'clover-file'
-              format: 'clover'
