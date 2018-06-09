@@ -5,9 +5,6 @@ namespace AvtoDev\EventsLogLaravel\Tests\Bootstrap;
 use AvtoDev\DevTools\Tests\PHPUnit\Traits\CreatesApplicationTrait;
 use AvtoDev\DevTools\Tests\Bootstrap\AbstractLaravelTestsBootstrapper;
 
-/**
- * Class TestsBootstrapper.
- */
 class TestsBootstrapper extends AbstractLaravelTestsBootstrapper
 {
     use CreatesApplicationTrait;
@@ -23,7 +20,7 @@ class TestsBootstrapper extends AbstractLaravelTestsBootstrapper
     }
 
     /**
-     * Подготавливает директорию `storage` для выполнения тестов.
+     * Prepare `storage` directory for tests.
      *
      * @return bool
      */

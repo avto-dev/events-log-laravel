@@ -7,8 +7,6 @@ use AvtoDev\EventsLogLaravel\Tests\AbstractTestCase;
 use AvtoDev\EventsLogLaravel\Logging\Formatters\AbstractLogstashFormatter;
 
 /**
- * Class AbstractLogstashFormatterTestCase.
- *
  * @group logging
  */
 abstract class AbstractLogstashFormatterTestCase extends AbstractTestCase

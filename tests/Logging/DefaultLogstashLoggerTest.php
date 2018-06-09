@@ -10,8 +10,6 @@ use AvtoDev\EventsLogLaravel\Tests\AbstractTestCase;
 use AvtoDev\EventsLogLaravel\Logging\DefaultLogstashLogger;
 
 /**
- * Class DefaultLogstashLoggerTest.
- *
  * @group logging
  */
 class DefaultLogstashLoggerTest extends AbstractTestCase

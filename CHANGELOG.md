@@ -1,5 +1,13 @@
 # Changelog
 
+## v1.0.3
+
+### Changed
+
+- Package `avto-dev/dev-tools` updated up to `1.1.6`
+- Minimal package `monolog/monolog` version now is `1.20`
+- Removed unimportant phpdocs
+
 ## v1.0.2
 
 ### Fixes

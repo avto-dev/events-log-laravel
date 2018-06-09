@@ -7,8 +7,6 @@ use Illuminate\Config\Repository as ConfigRepository;
 use AvtoDev\EventsLogLaravel\Events\AbstractLoggableEvent;
 
 /**
- * Class FeatureTest.
- *
  * @coversNothing
  */
 class FeatureTest extends AbstractTestCase
@@ -20,7 +18,7 @@ class FeatureTest extends AbstractTestCase
     {
         parent::setUp();
 
-        $this->clearLog();
+        $this->clearLaravelLogs();
     }
 
     /**

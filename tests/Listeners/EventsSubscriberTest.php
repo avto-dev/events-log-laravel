@@ -27,7 +27,7 @@ class EventsSubscriberTest extends AbstractTestCase
             'level'  => 'debug',
         ]);
 
-        $this->clearLog();
+        $this->clearLaravelLogs();
     }
 
     /**
@@ -39,7 +39,7 @@ class EventsSubscriberTest extends AbstractTestCase
     {
         $subscriber = new EventsSubscriber($this->app->make(LogManager::class));
 
-        $this->assertLogFileNotContains('Using emergency logger');
+        $this->assertLogFileNotExists();
         $this->assertInstanceOf(LoggerInterface::class, $subscriber->logDriver());
     }
 
@@ -51,7 +51,7 @@ class EventsSubscriberTest extends AbstractTestCase
     public function testConstructWithInvalidChannelName(): void
     {
         foreach ([Str::random(), ''] as $assert) {
-            $this->clearLog();
+            $this->clearLaravelLogs();
 
             new EventsSubscriber($this->app->make(LogManager::class), $assert);
 
@@ -70,7 +70,7 @@ class EventsSubscriberTest extends AbstractTestCase
 
         new EventsSubscriber($this->app->make(LogManager::class), $default);
 
-        $this->assertLogFileNotContains('Using emergency logger');
+        $this->assertLogFileNotExists();
     }
 
     /**
