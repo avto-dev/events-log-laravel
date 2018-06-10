@@ -31,6 +31,8 @@ build:
         coverage:
           file: 'clover-file'
           format: 'clover'
+      -
+        command: 'composer phpstan'
 
   dependencies:
     override:
