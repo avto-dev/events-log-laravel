@@ -21,3 +21,4 @@ enabled:
 disabled:
   - unalign_equals
   - concat_without_spaces
+  - declare_equal_normalize
