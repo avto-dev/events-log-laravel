@@ -41,7 +41,7 @@
     "scripts": {
         "test": "@php ./vendor/bin/phpunit --no-coverage",
         "test-cover": "@php ./vendor/bin/phpunit --coverage-html='./coverage/html'",
-        "phpstan": "@php ./vendor/bin/phpstan analyse --level=7 ./src"
+        "phpstan": "@php ./vendor/bin/phpstan analyse --level=max ./src"
     },
     "extra": {
         "laravel": {

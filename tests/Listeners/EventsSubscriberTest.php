@@ -31,6 +31,14 @@ class EventsSubscriberTest extends AbstractTestCase
     }
 
     /**
+     * {@inheritdoc}
+     */
+    public function fixLaravelLogFileName(string $default_log_file_name): string
+    {
+        return $default_log_file_name;
+    }
+
+    /**
      * Test constructor without passing log channel name.
      *
      * @return void
