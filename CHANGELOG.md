@@ -4,6 +4,18 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog][keepachangelog] and this project adheres to [Semantic Versioning][semver].
 
+## v1.2.0
+
+### Added
+
+- `skipLogging` method can be used in events, that implement `ShouldBeLoggedContract` interface (if method calling returns `true` - logging will be skipped) [#1]
+
+[#1]:https://github.com/avto-dev/events-log-laravel/issues/1
+
+### Changed
+
+- `phpstan` minimal version now is `0.10.2`
+
 ## v1.1.0
 
 ### Changed

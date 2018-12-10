@@ -19,7 +19,7 @@
 Require this package with composer using the following command (`laravel/framework` version 5.6 and above is required):
 
 ```shell
-$ composer require avto-dev/events-log-laravel "^1.1"
+$ composer require avto-dev/events-log-laravel "^1.2"
 ```
 
 > Installed `composer` is required ([how to install composer][getcomposer]).
@@ -155,6 +155,28 @@ event(new SomeApplicationEvent);
 ```
 
 И быть уверенным в том, что данное событие будет записано в лог-файл. О том, как работают события (events) в Laravel вы можете прочитать по [этой ссылке][laravel_events].
+
+### Условния логирования
+
+В некоторых случаях необходимо добавить условия логгирования события. Для этого вы можете реализовать в классе события метод `skipLogging`:
+
+```php
+
+class YourEvent implements \AvtoDev\EventsLogLaravel\Contracts\ShouldBeLoggedContract
+{
+    /**
+     * Determine if this event should be skipped.
+     *
+     * @return bool
+     */
+    public function skipLogging(): bool
+    {
+        return $this->value > 100;
+    }
+    
+    // ...
+}
+```
 
 ### Дополнительные логгеры
 

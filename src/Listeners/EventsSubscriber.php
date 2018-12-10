@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types=1);
+declare(strict_types = 1);
 
 namespace AvtoDev\EventsLogLaravel\Listeners;
 
@@ -61,7 +61,11 @@ class EventsSubscriber implements EventsSubscriberContract
             : null;
 
         foreach ($event_data as $event_datum) {
-            if (\is_object($event_datum) && $event_datum instanceof ShouldBeLoggedContract) {
+            if (
+                \is_object($event_datum)
+                && $event_datum instanceof ShouldBeLoggedContract
+                && $this->skipEventLogging($event_datum) === false
+            ) {
                 $this->writeEventIntoLog($event_datum, $event_name);
             }
         }
@@ -92,5 +96,17 @@ class EventsSubscriber implements EventsSubscriberContract
     public function subscribe(Dispatcher $events)
     {
         $events->listen('*', [$this, 'onAnyEvents']);
+    }
+
+    /**
+     * Make event additional checks using conditions.
+     *
+     * @param ShouldBeLoggedContract $event
+     *
+     * @return bool
+     */
+    protected function skipEventLogging(ShouldBeLoggedContract $event): bool
+    {
+        return \method_exists($event, $method_name = 'skipLogging') && $event->{$method_name}() === true;
     }
 }
