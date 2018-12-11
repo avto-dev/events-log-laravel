@@ -16,10 +16,6 @@ The format is based on [Keep a Changelog][keepachangelog] and this project adher
 
 - `phpstan` minimal version now is `0.10.2`
 
-### Changed
-
-- phpstan version up to 0.10.2
-
 ## v1.1.0
 
 ### Changed
