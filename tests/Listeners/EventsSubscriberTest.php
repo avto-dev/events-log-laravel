@@ -191,4 +191,44 @@ class EventsSubscriberTest extends AbstractTestCase
 
         $this->assertEquals(\count($wrong_levels), $exceptions_counter);
     }
+
+    /**
+     * Assert logging an event with `skipLogging` method.
+     *
+     * @return void
+     */
+    public function testSkipLoggingTrue(): void
+    {
+        $instance = new EventsSubscriber($this->app->make(LogManager::class), 'test_events_channel');
+
+        $instance->writeEventIntoLog($event = new Stubs\LoggableEventSkipLoggingStub(false));
+
+        $expects = [
+            $event->logMessage(),
+            $event->eventType(),
+            $event->eventSource(),
+            $this->app->environment() . '.' . Str::upper($event->logLevel()),
+        ];
+
+        $expects = array_merge($expects, array_keys($event->logEventExtraData()));
+        $expects = array_merge($expects, array_values($event->logEventExtraData()));
+
+        foreach ($expects as $expect) {
+            $this->assertLogFileContains($expect, 'events.log');
+        }
+    }
+
+    /**
+     * Assert logging an event with `skipLogging` method returns false.
+     *
+     * @return void
+     */
+    public function testSkipLoggingFalse(): void
+    {
+        $instance = new EventsSubscriber($this->app->make(LogManager::class), 'test_events_channel');
+
+        $instance->writeEventIntoLog($event = new Stubs\LoggableEventSkipLoggingStub(true));
+
+        $this->assertLogFileNotExists();
+    }
 }

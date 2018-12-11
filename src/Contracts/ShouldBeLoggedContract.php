@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types=1);
+declare(strict_types = 1);
 
 namespace AvtoDev\EventsLogLaravel\Contracts;
 
@@ -40,4 +40,15 @@ interface ShouldBeLoggedContract
      * @return string
      */
     public function eventSource(): string;
+
+    /*
+     * Determine if this event should be skipped.
+     *
+     * Is not required for implementation.
+     *
+     * @see \AvtoDev\EventsLogLaravel\Listeners\EventsSubscriber::skipLoggingConditions()
+     *
+     * @return bool
+     */
+    //public function skipLogging(): bool;
 }
