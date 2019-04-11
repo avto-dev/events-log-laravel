@@ -4,6 +4,12 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog][keepachangelog] and this project adheres to [Semantic Versioning][semver].
 
+## v1.3.0
+
+### Added
+
+- Sending logstash logs using UDP protocol (`DefaultUdpLogstashLogger` and `EventsUdpLogstashLogger` loggers)
+
 ## v1.2.0
 
 ### Added

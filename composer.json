@@ -21,6 +21,7 @@
         "laravel/framework": ">=5.6.0 <5.8.0"
     },
     "require-dev": {
+        "ext-sockets": "*",
         "avto-dev/dev-tools": "^1.7",
         "laravel/laravel": ">=5.6.0 <5.8.0",
         "phpunit/phpunit": "~7.0",
@@ -49,6 +50,9 @@
                 "AvtoDev\\EventsLogLaravel\\EventsLogServiceProvider"
             ]
         }
+    },
+    "suggest": {
+        "ext-sockets": "For a sending data using TCP\\UDP sockets"
     },
     "support": {
         "issues": "https://github.com/avto-dev/events-log-laravel/issues",
