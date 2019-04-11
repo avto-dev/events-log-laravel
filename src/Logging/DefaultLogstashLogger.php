@@ -13,6 +13,8 @@ use AvtoDev\EventsLogLaravel\Logging\Formatters\DefaultLogstashFormatter;
 
 class DefaultLogstashLogger implements LoggerContract
 {
+    use Traits\AppNameTrait;
+
     /**
      * {@inheritdoc}
      *
@@ -20,14 +22,8 @@ class DefaultLogstashLogger implements LoggerContract
      */
     public function __invoke(array $config): Logger
     {
-        try {
-            $app_name = config()->get('app.name');
-        } catch (\Throwable $e) {
-            //
-        }
-
         $formatter = new DefaultLogstashFormatter(
-            $config['formatter']['app_name'] ?? $app_name ?? 'app',
+            $config['formatter']['app_name'] ?? $this->getAppName() ?? 'app',
             $config['formatter']['system_name'] ?? null,
             $config['formatter']['extra_prefix'] ?? false,
             $config['formatter']['context_prefix'] ?? null,

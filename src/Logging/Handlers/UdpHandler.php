@@ -104,8 +104,8 @@ class UdpHandler extends AbstractProcessingHandler
      */
     public function recordToString(array $record): string
     {
-        if (isset($record['formatted']) && \is_string($record['formatted'])) {
-            return $record['formatted'];
+        if (isset($record['formatted']) && \is_string($formatted = $record['formatted'])) {
+            return $formatted;
         }
 
         return 'ERROR: FORMATTER NOT SET';
