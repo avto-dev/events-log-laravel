@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types=1);
+declare(strict_types = 1);
 
 namespace AvtoDev\EventsLogLaravel\Logging\Formatters;
 
@@ -21,6 +21,16 @@ abstract class AbstractLogstashFormatter extends LogstashFormatter
     }
 
     /**
+     * Modify parent formatted message.
+     *
+     * @param array $parent_message
+     * @param array $record
+     *
+     * @return array Message as an array
+     */
+    abstract protected function modifyParentMessage(array $parent_message, array $record): array;
+
+    /**
      * Format record for 'v1' format.
      *
      * @param array $record
@@ -31,14 +41,4 @@ abstract class AbstractLogstashFormatter extends LogstashFormatter
     {
         return $this->modifyParentMessage(parent::formatV1($record), $record);
     }
-
-    /**
-     * Modify parent formatted message.
-     *
-     * @param array $parent_message
-     * @param array $record
-     *
-     * @return array Message as an array
-     */
-    abstract protected function modifyParentMessage(array $parent_message, array $record): array;
 }

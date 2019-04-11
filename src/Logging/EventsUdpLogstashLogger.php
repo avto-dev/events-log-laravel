@@ -6,12 +6,12 @@ namespace AvtoDev\EventsLogLaravel\Logging;
 
 use Exception;
 use Monolog\Logger;
-use Monolog\Handler\StreamHandler;
+use InvalidArgumentException;
 use Monolog\Formatter\LogstashFormatter;
 use AvtoDev\EventsLogLaravel\Contracts\LoggerContract;
 use AvtoDev\EventsLogLaravel\Logging\Formatters\EventsLogstashFormatter;
 
-class EventsLogstashLogger implements LoggerContract
+class EventsUdpLogstashLogger implements LoggerContract
 {
     /**
      * {@inheritdoc}
@@ -20,6 +20,10 @@ class EventsLogstashLogger implements LoggerContract
      */
     public function __invoke(array $config): Logger
     {
+        if (! isset($config['host'], $config['port'])) {
+            throw new InvalidArgumentException('[host] and [port] values is required for this logger');
+        }
+
         try {
             $app_name = config()->get('app.name');
         } catch (\Throwable $e) {
@@ -34,16 +38,15 @@ class EventsLogstashLogger implements LoggerContract
             $config['formatter']['version'] ?? LogstashFormatter::V1
         );
 
-        $handler = new StreamHandler(
-            $config['path'] ?? storage_path('logs/logstash/laravel-events.log'),
-            Logger::toMonologLevel($config['level'] ?? 'debug'),
-            $config['bubble'] ?? true,
-            $config['permission'] ?? null,
-            $config['locking'] ?? false
+        $handler = new Handlers\UdpHandler(
+            (string) $config['host'],
+            (int) $config['port'],
+            Logger::toMonologLevel($config['level'] ?? Logger::DEBUG), // The minimum logging level
+            (bool) ($config['bubble'] ?? true), // Whether the messages that are handled can bubble up the stack or not
+            (bool) ($config['silent'] ?? true)
         );
 
-        $name = $config['name'] ?? app()->environment();
-
-        return (new Logger($name))->pushHandler($handler->setFormatter($formatter));
+        return (new Logger($config['name'] ?? app()->environment()))
+            ->pushHandler($handler->setFormatter($formatter));
     }
 }

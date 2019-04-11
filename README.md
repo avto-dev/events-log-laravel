@@ -19,7 +19,7 @@
 Require this package with composer using the following command (`laravel/framework` version 5.6 and above is required):
 
 ```shell
-$ composer require avto-dev/events-log-laravel "^1.2"
+$ composer require avto-dev/events-log-laravel "^1.3"
 ```
 
 > Installed `composer` is required ([how to install composer][getcomposer]).
@@ -82,6 +82,42 @@ return [
             'driver' => 'custom',
             'via'    => AvtoDev\EventsLogLaravel\Logging\EventsLogstashLogger::class,
             'path'   => storage_path('logs/logstash/laravel-events.log'),
+            'level'  => 'debug',
+        ],
+    ],
+];
+```
+
+Для отправки логов в формате `Logstash` по UDP протоколу:
+
+```php
+<?php
+
+return [
+
+    'default' => env('LOG_CHANNEL', 'app-logstash-udp'),
+
+    'events_channel' => env('EVENTS_LOG_CHANNEL', 'events-logstash-udp'),
+
+    // ...    
+
+    'channels' => [
+    
+        // ...
+
+        'app-logstash-udp' => [
+            'driver' => 'custom',
+            'via'    => AvtoDev\EventsLogLaravel\Logging\DefaultUdpLogstashLogger::class,
+            'host'   => env('LOGSTASH_UDP_HOST', 'logstash'),
+            'port'   => (int) env('LOGSTASH_UDP_PORT', 4560),
+            'level'  => 'debug',
+        ],
+
+        'events-logstash-udp' => [
+            'driver' => 'custom',
+            'via'    => AvtoDev\EventsLogLaravel\Logging\EventsUdpLogstashLogger::class,
+            'host'   => env('LOGSTASH_UDP_HOST', 'logstash'),
+            'port'   => (int) env('LOGSTASH_UDP_PORT', 4560),
             'level'  => 'debug',
         ],
     ],
@@ -184,8 +220,10 @@ class YourEvent implements \AvtoDev\EventsLogLaravel\Contracts\ShouldBeLoggedCon
 
 Класс логгера | Назначение
 ---------------- | ----------
-`DefaultLogstashLogger` | Пишет лог-записи в формате `logstash`, не видоизменяя тело записи (поле `context` не изменяется)
-`EventsLogstashLogger` | Пишет лог-записи в формате `logstash`, но данные связанные с событиями помещаются в секцию `event`
+`DefaultLogstashLogger` | Пишет лог-записи в формате `logstash` в файл, не видоизменяя тело записи (поле `context` не изменяется)
+`EventsLogstashLogger` | Пишет лог-записи в формате `logstash` в файл, но данные связанные с событиями помещаются в секцию `event`
+`DefaultUdpLogstashLogger` | Отправляет лог-записи в формате `logstash` по UDP протоколу, не видоизменяя тело записи (поле `context` не изменяется)
+`EventsUdpLogstashLogger` | Пишет лог-записи в формате `logstash` по UDP протоколу, но данные связанные с событиями помещаются в секцию `event`
 
 > Более подробно о них смотрите исходный код
 
