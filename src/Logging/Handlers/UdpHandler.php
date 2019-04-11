@@ -96,22 +96,6 @@ class UdpHandler extends AbstractProcessingHandler
     }
 
     /**
-     * {@inheritdoc}
-     *
-     * @throws Throwable
-     */
-    protected function write(array $record): void
-    {
-        try {
-            $this->socket->write($this->recordToString($record));
-        } catch (Throwable $e) {
-            if ($this->silent === false) {
-                throw $e;
-            }
-        }
-    }
-
-    /**
      * Convert record into string.
      *
      * @param array $record
@@ -125,5 +109,21 @@ class UdpHandler extends AbstractProcessingHandler
         }
 
         return 'ERROR: FORMATTER NOT SET';
+    }
+
+    /**
+     * {@inheritdoc}
+     *
+     * @throws Throwable
+     */
+    protected function write(array $record): void
+    {
+        try {
+            $this->socket->write($this->recordToString($record));
+        } catch (Throwable $e) {
+            if ($this->silent === false) {
+                throw $e;
+            }
+        }
     }
 }
