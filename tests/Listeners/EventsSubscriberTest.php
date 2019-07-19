@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types = 1);
+
 namespace AvtoDev\EventsLogLaravel\Tests\Listeners;
 
 use Illuminate\Support\Str;
@@ -14,7 +16,7 @@ class EventsSubscriberTest extends AbstractTestCase
     /**
      * {@inheritdoc}
      */
-    protected function setUp()
+    protected function setUp(): void
     {
         parent::setUp();
 

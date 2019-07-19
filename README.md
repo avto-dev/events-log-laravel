@@ -2,7 +2,7 @@
   <img src="https://laravel.com/assets/img/components/logo-laravel.svg" alt="Laravel" width="240" />
 </p>
 
-# Логгирование событий в Laravel-приложениях
+# Events logging for Laravel
 
 [![Version][badge_packagist_version]][link_packagist]
 [![Version][badge_php_version]][link_packagist]
@@ -12,27 +12,35 @@
 [![Downloads count][badge_downloads_count]][link_packagist]
 [![License][badge_license]][link_license]
 
-Данный пакет позволяет удобно использовать в вашем Laravel приложении функционал логгирования событий, которые реализуют определенный интерфейс.
+This package provides logging for Laravel events (events must implements special interface).
 
 ## Install
 
-Require this package with composer using the following command (`laravel/framework` version 5.6 and above is required):
+Require this package with composer using the following command:
 
 ```shell
-$ composer require avto-dev/events-log-laravel "^1.3"
+$ composer require avto-dev/events-log-laravel "^2.0"
 ```
 
 > Installed `composer` is required ([how to install composer][getcomposer]).
 
 > You need to fix the major version of package.
 
-Сервис-провайдер будет зарегистрирован автоматически. В противном случае выполните:
+> If you wants to disable package service-provider auto discover, just add into your `composer.json` next lines:
+>
+> ```json
+> {
+>     "extra": {
+>         "laravel": {
+>             "dont-discover": [
+>                 "avto-dev/events-log-laravel"
+>             ]
+>         }
+>     }
+> }
+> ```
 
-```shell
-$ php artisan package:discover
-```
-
-## Настройка
+## Setup
 
 После установки пакета вам необходимо произвести его настройку. Минимальной конфигурацией является добавление в ваш файл `./config/logging.php` значения:
 
@@ -197,9 +205,23 @@ event(new SomeApplicationEvent);
 В некоторых случаях необходимо добавить условия логгирования события. Для этого вы можете реализовать в классе события метод `skipLogging`:
 
 ```php
+<?php
 
-class YourEvent implements \AvtoDev\EventsLogLaravel\Contracts\ShouldBeLoggedContract
+class YourEvent extends AvtoDev\EventsLogLaravel\Events\AbstractLoggableEvent
 {
+    /**
+     * @var int 
+     */
+    protected $value = 101;
+    
+    /**
+     * {@inheritDoc}
+     */
+    public function logMessage(): string
+    {
+        return 'foo bar';
+    }
+    
     /**
      * Determine if this event should be skipped.
      *
@@ -229,12 +251,12 @@ class YourEvent implements \AvtoDev\EventsLogLaravel\Contracts\ShouldBeLoggedCon
 
 ### Testing
 
-For package testing we use `phpunit` framework. Just write into your terminal:
+For package testing we use `phpunit` framework and `docker-ce` + `docker-compose` as develop environment. So, just write into your terminal after repository cloning:
 
-```shell
-$ git clone git@github.com:avto-dev/events-log-laravel.git ./events-log-laravel && cd $_
-$ composer install
-$ composer test
+```bash
+$ make build
+$ make latest # or 'make lowest'
+$ make test
 ```
 
 ## Changes log
