@@ -4,6 +4,25 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog][keepachangelog] and this project adheres to [Semantic Versioning][semver].
 
+## v2.0.0
+
+### Added
+
+- Docker-based environment for development
+- Project `Makefile`
+
+### Changed
+
+- Maximal `Laravel` version now is `5.8.x`
+- Dependency `laravel/framework` changed to `illuminate/*`
+- Composer scripts
+- `\AvtoDev\EventsLogLaravel\EventsLogServiceProvider` &rarr; `\AvtoDev\EventsLogLaravel\ServiceProvider`
+- Method `subscribe` in `EventsSubscriberContract` now must returns `void`
+
+### Removed
+
+- Dev-dependency `avto-dev/dev-tools`
+
 ## v1.3.0
 
 ### Added

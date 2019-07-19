@@ -25,7 +25,7 @@ class EventsSubscriber implements EventsSubscriberContract
     protected $logger_channel_name;
 
     /**
-     * EventsLoggerSubscriber constructor.
+     * Create a new EventsSubscriber instance.
      *
      * @param LogManager  $log_manager
      * @param string|null $logger_channel_name
@@ -41,7 +41,7 @@ class EventsSubscriber implements EventsSubscriberContract
      *
      * @return LoggerInterface
      */
-    public function logDriver()
+    public function logDriver(): LoggerInterface
     {
         return $this->log_driver;
     }
@@ -54,7 +54,7 @@ class EventsSubscriber implements EventsSubscriberContract
      *
      * @return void
      */
-    public function onAnyEvents($event, array $event_data)
+    public function onAnyEvents($event, array $event_data): void
     {
         $event_name = \is_string($event)
             ? $event
@@ -79,7 +79,7 @@ class EventsSubscriber implements EventsSubscriberContract
      *
      * @return void
      */
-    public function writeEventIntoLog(ShouldBeLoggedContract $event, $event_name = null)
+    public function writeEventIntoLog(ShouldBeLoggedContract $event, $event_name = null): void
     {
         $this->log_driver->log($event->logLevel(), $event->logMessage(), [
             'event' => \array_replace_recursive([
@@ -93,7 +93,7 @@ class EventsSubscriber implements EventsSubscriberContract
     /**
      * {@inheritdoc}
      */
-    public function subscribe(Dispatcher $events)
+    public function subscribe(Dispatcher $events): void
     {
         $events->listen('*', [$this, 'onAnyEvents']);
     }

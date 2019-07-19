@@ -13,5 +13,5 @@ interface EventsSubscriberContract
      *
      * @return void
      */
-    public function subscribe(Dispatcher $events);
+    public function subscribe(Dispatcher $events): void;
 }

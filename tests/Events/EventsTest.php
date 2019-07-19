@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types = 1);
+
 namespace AvtoDev\EventsLogLaravel\Tests\Events;
 
 use AvtoDev\EventsLogLaravel\Tests\AbstractTestCase;
@@ -9,8 +11,6 @@ use AvtoDev\EventsLogLaravel\Contracts\ShouldBeLoggedContract;
 class EventsTest extends AbstractTestCase
 {
     /**
-     * Test events.
-     *
      * @return void
      */
     public function testEvents(): void
@@ -27,9 +27,9 @@ class EventsTest extends AbstractTestCase
 
         $this->assertInstanceOf(ShouldBeLoggedContract::class, $instance);
 
-        $this->assertStringsEquals('info', $instance->logLevel(), false);
-        $this->assertEmptyArray($instance->logEventExtraData());
-        $this->assertStringsEquals('UNKNOWN', $instance->eventType(), false);
-        $this->assertStringsEquals('UNKNOWN', $instance->eventSource(), false);
+        $this->assertEquals('info', $instance->logLevel());
+        $this->assertEmpty($instance->logEventExtraData());
+        $this->assertSame('UNKNOWN', $instance->eventType());
+        $this->assertSame('UNKNOWN', $instance->eventSource());
     }
 }

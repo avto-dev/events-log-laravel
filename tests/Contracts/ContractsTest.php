@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types = 1);
+
 namespace AvtoDev\EventsLogLaravel\Tests\Contracts;
 
 use AvtoDev\EventsLogLaravel\Tests\AbstractTestCase;
@@ -10,8 +12,6 @@ use AvtoDev\EventsLogLaravel\Contracts\EventsSubscriberContract;
 class ContractsTest extends AbstractTestCase
 {
     /**
-     * Tests contracts exists.
-     *
      * @return void
      */
     public function testExists(): void

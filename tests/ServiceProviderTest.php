@@ -5,14 +5,14 @@ namespace AvtoDev\EventsLogLaravel\Tests;
 use AvtoDev\EventsLogLaravel\Listeners\EventsSubscriber;
 use AvtoDev\EventsLogLaravel\Contracts\EventsSubscriberContract;
 
-class EventsLogServiceProviderTest extends AbstractTestCase
+class ServiceProviderTest extends AbstractTestCase
 {
     /**
      * Tests service-provider loading.
      *
      * @return void
      */
-    public function testServiceProviderLoading()
+    public function testServiceProviderLoading(): void
     {
         /* @see AbstractTestCase::afterApplicationBootstrapped */
         $this->assertEquals('default', $this->app->make('log.events.channel'));

@@ -14,7 +14,7 @@ class FeatureTest extends AbstractTestCase
     /**
      * {@inheritdoc}
      */
-    protected function setUp()
+    protected function setUp(): void
     {
         parent::setUp();
 
@@ -28,14 +28,12 @@ class FeatureTest extends AbstractTestCase
      */
     public function testWriting(): void
     {
-        $event = new class extends AbstractLoggableEvent {
+        event(new class extends AbstractLoggableEvent {
             public function logMessage(): string
             {
                 return 'foo message';
             }
-        };
-
-        event($event);
+        });
 
         $this->assertLogFileContains('"source":"UNKNOWN"', $events_log = 'laravel-events.log');
         $this->assertLogFileContains('"type":"UNKNOWN"', $events_log);
@@ -49,10 +47,7 @@ class FeatureTest extends AbstractTestCase
         $this->assertLogFileContains('"message":"foo message"', $events_logstash_log);
     }
 
-    /**
-     * {@inheritdoc}
-     */
-    protected function afterApplicationBootstrapped(Application $app)
+    protected function afterBootstrap(Application $app): void
     {
         /** @var ConfigRepository $config */
         $config = $app->make('config');
@@ -77,6 +72,6 @@ class FeatureTest extends AbstractTestCase
 
         $config->set('logging.events_channel', $channel_name);
 
-        parent::afterApplicationBootstrapped($app);
+        parent::afterBootstrap($app);
     }
 }
