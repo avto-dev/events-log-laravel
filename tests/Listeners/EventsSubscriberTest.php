@@ -11,6 +11,9 @@ use AvtoDev\EventsLogLaravel\Tests\AbstractTestCase;
 use Illuminate\Config\Repository as ConfigRepository;
 use AvtoDev\EventsLogLaravel\Listeners\EventsSubscriber;
 
+/**
+ * @covers \AvtoDev\EventsLogLaravel\Listeners\EventsSubscriber<extended>
+ */
 class EventsSubscriberTest extends AbstractTestCase
 {
     /**

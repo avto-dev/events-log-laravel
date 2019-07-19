@@ -16,7 +16,7 @@ use AvtoDev\EventsLogLaravel\Logging\Formatters\DefaultLogstashFormatter;
 /**
  * @group logging
  *
- * @coversDefaultClass \AvtoDev\EventsLogLaravel\Logging\DefaultUdpLogstashLogger
+ * @covers \AvtoDev\EventsLogLaravel\Logging\DefaultUdpLogstashLogger<extended>
  */
 class DefaultUdpLogstashLoggerTest extends AbstractTestCase
 {

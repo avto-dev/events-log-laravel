@@ -12,7 +12,7 @@ use AvtoDev\EventsLogLaravel\Logging\Handlers\UdpHandler;
 /**
  * @group handlers
  *
- * @coversDefaultClass \AvtoDev\EventsLogLaravel\Logging\Handlers\UdpHandler
+ * @covers \AvtoDev\EventsLogLaravel\Logging\Handlers\UdpHandler<extended>
  */
 class UdpHandlerTest extends AbstractTestCase
 {

@@ -11,6 +11,8 @@ use AvtoDev\EventsLogLaravel\Logging\DefaultLogstashLogger;
 
 /**
  * @group logging
+ *
+ * @covers \AvtoDev\EventsLogLaravel\Logging\DefaultLogstashLogger<extended>
  */
 class DefaultLogstashLoggerTest extends AbstractTestCase
 {

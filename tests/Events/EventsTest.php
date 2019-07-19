@@ -8,6 +8,9 @@ use AvtoDev\EventsLogLaravel\Tests\AbstractTestCase;
 use AvtoDev\EventsLogLaravel\Events\AbstractLoggableEvent;
 use AvtoDev\EventsLogLaravel\Contracts\ShouldBeLoggedContract;
 
+/**
+ * @covers \AvtoDev\EventsLogLaravel\Events\AbstractLoggableEvent<extended>
+ */
 class EventsTest extends AbstractTestCase
 {
     /**

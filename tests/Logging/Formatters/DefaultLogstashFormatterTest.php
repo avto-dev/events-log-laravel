@@ -7,6 +7,8 @@ use AvtoDev\EventsLogLaravel\Logging\Formatters\DefaultLogstashFormatter;
 
 /**
  * @group logging
+ *
+ * @covers \AvtoDev\EventsLogLaravel\Logging\Formatters\DefaultLogstashFormatter<extended>
  */
 class DefaultLogstashFormatterTest extends AbstractLogstashFormatterTestCase
 {

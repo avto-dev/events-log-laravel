@@ -23,7 +23,7 @@ class ContractsTest extends AbstractTestCase
         ];
 
         foreach ($classes as $class_name) {
-            $this->assertTrue(interface_exists($class_name));
+            $this->assertTrue(\interface_exists($class_name));
         }
     }
 }

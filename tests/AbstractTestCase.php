@@ -9,7 +9,7 @@ use Illuminate\Foundation\Application;
 use Illuminate\Contracts\Console\Kernel;
 use AvtoDev\EventsLogLaravel\ServiceProvider;
 
-class AbstractTestCase extends \Illuminate\Foundation\Testing\TestCase
+abstract class AbstractTestCase extends \Illuminate\Foundation\Testing\TestCase
 {
     /**
      * Creates the application.
