@@ -46,7 +46,9 @@ class ServiceProvider extends \Illuminate\Support\ServiceProvider
     protected function registerChannel(): void
     {
         $this->app->bind('log.events.channel', function (Container $app): string {
-            return $app->make(ConfigRepository::class)->get('logging.events_channel', env('EVENTS_LOG_CHANNEL'));
+            return $app
+                ->make(ConfigRepository::class)
+                ->get('logging.events_channel', env('EVENTS_LOG_CHANNEL', 'default'));
         });
     }
 
