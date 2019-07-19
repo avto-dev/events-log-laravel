@@ -2,20 +2,15 @@
 
 namespace AvtoDev\EventsLogLaravel\Tests;
 
-use Illuminate\Filesystem\Filesystem;
 use ReflectionClass;
 use ReflectionException;
-use Illuminate\Contracts\Console\Kernel;
+use Illuminate\Filesystem\Filesystem;
 use Illuminate\Foundation\Application;
+use Illuminate\Contracts\Console\Kernel;
 use AvtoDev\EventsLogLaravel\ServiceProvider;
 
 class AbstractTestCase extends \Illuminate\Foundation\Testing\TestCase
 {
-    protected function getStoragePath(): string
-    {
-        return __DIR__ . '/temp/storage';
-    }
-
     /**
      * Creates the application.
      *
@@ -33,6 +28,11 @@ class AbstractTestCase extends \Illuminate\Foundation\Testing\TestCase
         $this->afterBootstrap($app);
 
         return $app;
+    }
+
+    protected function getStoragePath(): string
+    {
+        return __DIR__ . '/temp/storage';
     }
 
     /**
