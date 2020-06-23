@@ -86,13 +86,13 @@ The format is based on [Keep a Changelog][keepachangelog] and this project adher
 
 ## v1.0.2
 
-### Fixes
+### Fixed
 
 - One more service provider fix
 
 ## v1.0.1
 
-### Fixes
+### Fixed
 
 - Fix service provider binds error
 

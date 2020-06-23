@@ -26,10 +26,6 @@ jobs: # Docs: <https://git.io/JvxXE>
           - php: '7.3'
             setup: basic
             coverage: no
-            laravel: '~5.6.0'
-          - php: '7.3'
-            setup: basic
-            coverage: no
             laravel: '~5.7.0'
           - php: '7.3'
             setup: basic
