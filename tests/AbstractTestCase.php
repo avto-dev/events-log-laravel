@@ -74,7 +74,7 @@ abstract class AbstractTestCase extends \Illuminate\Foundation\Testing\TestCase
      */
     protected function assertLogFileNotExists(string $file = 'laravel.log'): void
     {
-        $this->assertFileNotExists($this->getStoragePath() . "/logs/$file");
+        $this->assertFileNotExists($this->getStoragePath() . "/logs/{$file}");
     }
 
     /**
@@ -84,7 +84,7 @@ abstract class AbstractTestCase extends \Illuminate\Foundation\Testing\TestCase
      */
     protected function assertLogFileExists(string $file = 'laravel.log'): void
     {
-        $this->assertFileExists($this->getStoragePath() . "/logs/$file");
+        $this->assertFileExists($this->getStoragePath() . "/logs/{$file}");
     }
 
     /**
@@ -95,7 +95,7 @@ abstract class AbstractTestCase extends \Illuminate\Foundation\Testing\TestCase
      */
     protected function assertLogFileContains(string $what, string $file = 'laravel.log'): void
     {
-        $this->assertContains($what, \file_get_contents($this->getStoragePath() . "/logs/$file"));
+        $this->assertStringContainsString($what, \file_get_contents($this->getStoragePath() . "/logs/{$file}"));
     }
 
     /**

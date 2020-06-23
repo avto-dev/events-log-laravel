@@ -7,14 +7,18 @@ namespace AvtoDev\EventsLogLaravel\Logging\Formatters;
 class DefaultLogstashFormatter extends AbstractLogstashFormatter
 {
     /**
-     * {@inheritdoc}
+     * Formats a log record.
      *
-     * @return array<string, mixed> Message
+     * @param array<string, mixed> $record
+     *
+     * @return string
      */
-    protected function modifyParentMessage(array $parent_message, array $record): array
+    public function format(array $record): string
     {
-        $parent_message['entry_type'] = 'log';
+        $formatted = $this->formatRecord($record);
 
-        return $parent_message;
+        $formatted['entry_type'] = 'log';
+
+        return $this->toJson($formatted) . "\n";
     }
 }

@@ -2,33 +2,29 @@
 
 namespace AvtoDev\EventsLogLaravel\Tests\Logging\Formatters;
 
-use Monolog\Formatter\LogstashFormatter;
 use AvtoDev\EventsLogLaravel\Logging\Formatters\DefaultLogstashFormatter;
 
 /**
- * @group logging
+ * @group  logging
  *
  * @covers \AvtoDev\EventsLogLaravel\Logging\Formatters\DefaultLogstashFormatter<extended>
  */
-class DefaultLogstashFormatterTest extends AbstractLogstashFormatterTestCase
+class DefaultLogstashFormatterTest extends \AvtoDev\EventsLogLaravel\Tests\AbstractTestCase
 {
     /**
      * Тест метода-форматтера.
      */
     public function testFormatter(): void
     {
-        foreach ([LogstashFormatter::V0, LogstashFormatter::V1] as $version) {
-            $instance = new DefaultLogstashFormatter(
-                $app_name = 'test_app',
-                $system_nme = null,
-                $extra_prefix = null,
-                $context_prefix = 'ctxt_',
-                $version
-            );
+        $instance = new DefaultLogstashFormatter(
+            'test_app',
+            'name',
+            'extra',
+            'ctxt_'
+        );
 
-            $formatted = \json_decode($instance->format([]), true);
+        $formatted = \json_decode($instance->format([]), true);
 
-            $this->assertEquals('log', $formatted['entry_type']);
-        }
+        $this->assertEquals('log', $formatted['entry_type']);
     }
 }

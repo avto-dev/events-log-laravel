@@ -4,16 +4,12 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog][keepachangelog] and this project adheres to [Semantic Versioning][semver].
 
-## v2.2.0
+## v3.0.0
 
 ### Changed
 
-- CI completely moved from "Travis CI" to "Github Actions" _(travis builds disabled)_
-- Minimal required PHP version now is `7.2`
-
-### Added
-
-- PHP 7.4 is supported now
+- Minimal `illuminate/*` packages version now is `7.*`
+- WIP
 
 ## v2.1.0
 

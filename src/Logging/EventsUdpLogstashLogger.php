@@ -29,9 +29,8 @@ class EventsUdpLogstashLogger implements LoggerContract
         $formatter = new EventsLogstashFormatter(
             $config['formatter']['app_name'] ?? $this->getAppName() ?? 'app',
             $config['formatter']['system_name'] ?? null,
-            $config['formatter']['extra_prefix'] ?? false,
-            $config['formatter']['context_prefix'] ?? null,
-            $config['formatter']['version'] ?? LogstashFormatter::V1
+            $config['formatter']['extra_prefix'] ?? 'extra',
+            $config['formatter']['context_prefix'] ?? 'context'
         );
 
         $handler = new Handlers\UdpHandler(
