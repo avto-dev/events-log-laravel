@@ -49,8 +49,8 @@ class EventsSubscriber implements EventsSubscriberContract
     /**
      * All events listener.
      *
-     * @param mixed|string $event
-     * @param array        $event_data
+     * @param mixed|string         $event
+     * @param array<string, mixed> $event_data
      *
      * @return void
      */
@@ -95,7 +95,9 @@ class EventsSubscriber implements EventsSubscriberContract
      */
     public function subscribe(Dispatcher $events): void
     {
-        $events->listen('*', [$this, 'onAnyEvents']);
+        $events->listen('*', function ($event, array $event_data) {
+            $this->onAnyEvents($event, $event_data);
+        });
     }
 
     /**

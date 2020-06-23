@@ -23,7 +23,7 @@ interface ShouldBeLoggedContract
     /**
      * Log event extra data.
      *
-     * @return array
+     * @return array<string, mixed>
      */
     public function logEventExtraData(): array;
 

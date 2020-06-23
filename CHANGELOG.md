@@ -4,6 +4,17 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog][keepachangelog] and this project adheres to [Semantic Versioning][semver].
 
+## v2.2.0
+
+### Changed
+
+- CI completely moved from "Travis CI" to "Github Actions" _(travis builds disabled)_
+- Minimal required PHP version now is `7.2`
+
+### Added
+
+- PHP 7.4 is supported now
+
 ## v2.1.0
 
 ### Changed
@@ -74,13 +85,13 @@ The format is based on [Keep a Changelog][keepachangelog] and this project adher
 
 ## v1.0.2
 
-### Fixes
+### Fixed
 
 - One more service provider fix
 
 ## v1.0.1
 
-### Fixes
+### Fixed
 
 - Fix service provider binds error
 

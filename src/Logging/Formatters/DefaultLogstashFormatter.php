@@ -8,6 +8,8 @@ class DefaultLogstashFormatter extends AbstractLogstashFormatter
 {
     /**
      * {@inheritdoc}
+     *
+     * @return array<string, mixed> Message
      */
     protected function modifyParentMessage(array $parent_message, array $record): array
     {
