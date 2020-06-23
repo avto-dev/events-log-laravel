@@ -15,10 +15,6 @@ The format is based on [Keep a Changelog][keepachangelog] and this project adher
 
 - PHP 7.4 is supported now
 
-### Removed
-
-- `monolog/monolog` from dependencies list (already declared in `illuminate/log` package)
-
 ## v2.1.0
 
 ### Changed
