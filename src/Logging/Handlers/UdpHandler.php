@@ -112,7 +112,7 @@ class UdpHandler extends AbstractProcessingHandler
     }
 
     /**
-     * Writes the record down to the log of the implementing handler
+     * Writes the record down to the log of the implementing handler.
      *
      * @param array<string, mixed> $record
      *
