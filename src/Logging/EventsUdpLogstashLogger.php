@@ -7,7 +7,6 @@ namespace AvtoDev\EventsLogLaravel\Logging;
 use Exception;
 use Monolog\Logger;
 use InvalidArgumentException;
-use Monolog\Formatter\LogstashFormatter;
 use AvtoDev\EventsLogLaravel\Contracts\LoggerContract;
 use AvtoDev\EventsLogLaravel\Logging\Formatters\EventsLogstashFormatter;
 

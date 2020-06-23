@@ -22,14 +22,14 @@ abstract class AbstractLogstashFormatter extends \Monolog\Formatter\LogstashForm
         }
         $message = [
             '@timestamp' => $record['datetime'],
-            '@version' => 1,
-            'host' => $this->systemName,
+            '@version'   => 1,
+            'host'       => $this->systemName,
         ];
         if (isset($record['message'])) {
             $message['message'] = $record['message'];
         }
         if (isset($record['channel'])) {
-            $message['type'] = $record['channel'];
+            $message['type']    = $record['channel'];
             $message['channel'] = $record['channel'];
         }
         if (isset($record['level_name'])) {
@@ -41,10 +41,10 @@ abstract class AbstractLogstashFormatter extends \Monolog\Formatter\LogstashForm
         if ($this->applicationName) {
             $message['type'] = $this->applicationName;
         }
-        if (!empty($record['extra'])) {
+        if (! empty($record['extra'])) {
             $message[$this->extraKey] = $record['extra'];
         }
-        if (!empty($record['context'])) {
+        if (! empty($record['context'])) {
             $message[$this->contextKey] = $record['context'];
         }
 
