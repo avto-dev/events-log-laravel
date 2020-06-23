@@ -4,6 +4,7 @@ declare(strict_types = 1);
 
 namespace AvtoDev\EventsLogLaravel\Tests\Listeners;
 
+use Mockery as m;
 use Illuminate\Support\Str;
 use Psr\Log\LoggerInterface;
 use Illuminate\Log\LogManager;
@@ -95,15 +96,12 @@ class EventsSubscriberTest extends AbstractTestCase
     {
         $event = new Stubs\LoggableEventStub;
 
-        $mock = $this
-            ->getMockBuilder(EventsSubscriber::class)
-            ->setConstructorArgs([$this->app->make(LogManager::class), 'test_events_channel'])
-            ->setMethods([$write_log_method_name = 'writeEventIntoLog'])
+        /* @var $mock m\MockInterface|EventsSubscriber */
+        $mock = m::mock(EventsSubscriber::class, [$this->app->make(LogManager::class), 'test_events_channel'])
+            ->makePartial()
+            ->expects($write_log_method_name = 'writeEventIntoLog')
+            ->once()
             ->getMock();
-
-        $mock
-            ->expects($this->once())
-            ->method($write_log_method_name);
 
         /* @var $mock EventsSubscriber */
         $mock->onAnyEvents(\get_class($event), [$event]);
@@ -118,17 +116,13 @@ class EventsSubscriberTest extends AbstractTestCase
     {
         $event = new Stubs\NotLoggableEventStub;
 
-        $mock = $this
-            ->getMockBuilder(EventsSubscriber::class)
-            ->setConstructorArgs([$this->app->make(LogManager::class), 'test_events_channel'])
-            ->setMethods([$write_log_method_name = 'writeEventIntoLog'])
+        /* @var $mock m\MockInterface|EventsSubscriber */
+        $mock = m::mock(EventsSubscriber::class, [$this->app->make(LogManager::class), 'test_events_channel'])
+            ->makePartial()
+            ->expects($write_log_method_name = 'writeEventIntoLog')
+            ->never()
             ->getMock();
 
-        $mock
-            ->expects($this->never())
-            ->method($write_log_method_name);
-
-        /* @var $mock EventsSubscriber */
         $mock->onAnyEvents(\get_class($event), [$event]);
     }
 
@@ -170,14 +164,14 @@ class EventsSubscriberTest extends AbstractTestCase
         $exceptions_counter = 0;
 
         foreach (($wrong_levels = ['foo', 'bar']) + ($good_levels = ['Debug', 'INFO', 'emeRgency']) as $level_name) {
-            $mock = $this
-                ->getMockBuilder(Stubs\LoggableEventStub::class)
-                ->getMock();
 
-            $mock
-                ->expects($this->once())
-                ->method('logLevel')
-                ->will($this->returnValue($level_name));
+            /* @var $mock m\MockInterface|Stubs\LoggableEventStub */
+            $mock = m::mock(Stubs\LoggableEventStub::class)
+                ->makePartial()
+                ->expects('logLevel')
+                ->once()
+                ->andReturn($level_name)
+                ->getMock();
 
             /* @var Stubs\LoggableEventStub $mock */
             try {
