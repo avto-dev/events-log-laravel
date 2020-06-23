@@ -8,13 +8,16 @@ The format is based on [Keep a Changelog][keepachangelog] and this project adher
 
 ### Changed
 
-- Maximal `illuminate/*` packages version now is `7.*`
 - CI completely moved from "Travis CI" to "Github Actions" _(travis builds disabled)_
 - Minimal required PHP version now is `7.2`
 
 ### Added
 
 - PHP 7.4 is supported now
+
+### Removed
+
+- `monolog/monolog` from dependencies list (already declared in `illuminate/log` package)
 
 ## v2.1.0
 
