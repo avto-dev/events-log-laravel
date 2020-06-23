@@ -98,7 +98,7 @@ class UdpHandler extends AbstractProcessingHandler
     /**
      * Convert record into string.
      *
-     * @param array $record
+     * @param array<string, mixed> $record
      *
      * @return string
      */
@@ -112,9 +112,13 @@ class UdpHandler extends AbstractProcessingHandler
     }
 
     /**
-     * {@inheritdoc}
+     * Writes the record down to the log of the implementing handler
+     *
+     * @param array<string, mixed> $record
      *
      * @throws Throwable
+     *
+     * @return void
      */
     protected function write(array $record): void
     {

@@ -9,7 +9,7 @@ interface LoggerContract
     /**
      * Create a Monolog instance.
      *
-     * @param array $config
+     * @param array<string, mixed> $config
      *
      * @return Logger
      */

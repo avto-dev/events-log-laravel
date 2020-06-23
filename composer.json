@@ -16,30 +16,37 @@
         }
     ],
     "require": {
-        "php": ">=7.1.3",
+        "php": ">=7.2",
         "monolog/monolog": "^1.20",
         "psr/log": "^1.1",
-        "illuminate/log": ">=5.6.0 <5.9.0 || ~6.0",
-        "illuminate/config": ">=5.6.0 <5.9.0 || ~6.0",
-        "illuminate/events": ">=5.6.0 <5.9.0 || ~6.0",
-        "illuminate/contracts": ">=5.6.0 <5.9.0 || ~6.0"
+        "illuminate/log": "^5.5 || ~6.0 || ~7.0",
+        "illuminate/config": "^5.5 || ~6.0 || ~7.0",
+        "illuminate/events": "^5.5 || ~6.0 || ~7.0",
+        "illuminate/contracts": "^5.5 || ~6.0 || ~7.0"
     },
     "require-dev": {
         "ext-sockets": "*",
         "ext-json": "*",
-        "laravel/laravel": ">=5.6.0 <5.9.0 || ~6.0",
-        "mockery/mockery": "^1.0",
-        "phpstan/phpstan": "^0.11.3",
+        "laravel/laravel": "^5.5 || ~6.0 || ~7.0",
+        "mockery/mockery": "^1.3",
+        "phpstan/phpstan": "^0.12",
         "phpunit/phpunit": "^6.4 || ~7.5"
     },
     "autoload": {
         "psr-4": {
-            "AvtoDev\\EventsLogLaravel\\": "src"
+            "AvtoDev\\EventsLogLaravel\\": "src/"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "AvtoDev\\EventsLogLaravel\\Tests\\": "tests"
+            "AvtoDev\\EventsLogLaravel\\Tests\\": "tests/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "AvtoDev\\EventsLogLaravel\\ServiceProvider"
+            ]
         }
     },
     "scripts": {
@@ -55,22 +62,11 @@
             "@phpunit-cover"
         ]
     },
-    "extra": {
-        "laravel": {
-            "providers": [
-                "AvtoDev\\EventsLogLaravel\\ServiceProvider"
-            ]
-        }
-    },
     "suggest": {
         "ext-sockets": "For a sending data using TCP\\UDP sockets"
     },
     "support": {
         "issues": "https://github.com/avto-dev/events-log-laravel/issues",
         "source": "https://github.com/avto-dev/events-log-laravel"
-    },
-    "config": {
-        "sort-packages": true
-    },
-    "prefer-stable": true
+    }
 }
