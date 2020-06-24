@@ -119,7 +119,6 @@ return [
 
 Более подробно о настройке логгирования вы можете прочитать по [этой ссылке][laravel_logging].
 
-
 ## Использование
 
 Данный пакет работает следующий образом:
@@ -174,6 +173,14 @@ class SomeApplicationEvent implements \AvtoDev\EventsLogLaravel\Contracts\Should
     {
         return 'service_name';
     }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function skipLogging() : bool
+    {
+        return false;
+    }
 }
 ```
 
@@ -187,7 +194,7 @@ event(new SomeApplicationEvent);
 
 ### Условия логирования
 
-В некоторых случаях необходимо добавить условия логгирования события. Для этого вы можете реализовать в классе события метод `skipLogging`:
+В некоторых случаях необходимо добавить условия логгирования события. Для этого вы можете использовать в классе события метод `skipLogging`:
 
 ```php
 <?php
@@ -208,9 +215,7 @@ class YourEvent extends AvtoDev\EventsLogLaravel\Events\AbstractLoggableEvent
     }
 
     /**
-     * Determine if this event should be skipped.
-     *
-     * @return bool
+     * {@inheritDoc}
      */
     public function skipLogging(): bool
     {
