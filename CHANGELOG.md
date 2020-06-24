@@ -8,8 +8,21 @@ The format is based on [Keep a Changelog][keepachangelog] and this project adher
 
 ### Changed
 
-- Minimal `illuminate/*` packages version now is `7.*`
-- WIP
+- Minimal required `illuminate/*` package versions now is `7.*`
+- Minimal required PHP version now is `7.2.5`
+- Minimal required `monolog/monolog` version now is `^2.0`
+- `DefaultLogstashLogger`, `DefaultUdpLogstashLogger`, `EventsLogstashLogger` and `EventsUdpLogstashLogger` uses `'extra'` for extra keys (instead `false`) and `'context'` for context keys (instead `null`) inside logstash "fields" by default
+
+## v2.2.0
+
+### Changed
+
+- CI completely moved from "Travis CI" to "Github Actions" _(travis builds disabled)_
+- Minimal required PHP version now is `7.2`
+
+### Added
+
+- PHP 7.4 is supported now
 
 ## v2.1.0
 

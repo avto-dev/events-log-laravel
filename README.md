@@ -18,7 +18,7 @@ This package provides logging for Laravel events (events must implements special
 Require this package with composer using the following command:
 
 ```shell
-$ composer require avto-dev/events-log-laravel "^2.0"
+$ composer require avto-dev/events-log-laravel "^3.0"
 ```
 
 > Installed `composer` is required ([how to install composer][getcomposer]).
@@ -34,9 +34,9 @@ $ composer require avto-dev/events-log-laravel "^2.0"
 
 return [
     // ...
-    
+
     'events_channel' => env('EVENTS_LOG_CHANNEL', 'stack'),
-    
+
     // ...
 ];
 ```
@@ -54,10 +54,10 @@ return [
 
     'events_channel' => env('EVENTS_LOG_CHANNEL', 'events-stack'),
 
-    // ...    
+    // ...
 
     'channels' => [
-    
+
         // ...
 
         'events-stack' => [
@@ -92,10 +92,10 @@ return [
 
     'events_channel' => env('EVENTS_LOG_CHANNEL', 'events-logstash-udp'),
 
-    // ...    
+    // ...
 
     'channels' => [
-    
+
         // ...
 
         'app-logstash-udp' => [
@@ -185,7 +185,7 @@ event(new SomeApplicationEvent);
 
 И быть уверенным в том, что данное событие будет записано в лог-файл. О том, как работают события (events) в Laravel вы можете прочитать по [этой ссылке][laravel_events].
 
-### Условния логирования
+### Условия логирования
 
 В некоторых случаях необходимо добавить условия логгирования события. Для этого вы можете реализовать в классе события метод `skipLogging`:
 
@@ -195,10 +195,10 @@ event(new SomeApplicationEvent);
 class YourEvent extends AvtoDev\EventsLogLaravel\Events\AbstractLoggableEvent
 {
     /**
-     * @var int 
+     * @var int
      */
     protected $value = 101;
-    
+
     /**
      * {@inheritDoc}
      */
@@ -206,7 +206,7 @@ class YourEvent extends AvtoDev\EventsLogLaravel\Events\AbstractLoggableEvent
     {
         return 'foo bar';
     }
-    
+
     /**
      * Determine if this event should be skipped.
      *
@@ -216,7 +216,7 @@ class YourEvent extends AvtoDev\EventsLogLaravel\Events\AbstractLoggableEvent
     {
         return $this->value > 100;
     }
-    
+
     // ...
 }
 ```
@@ -225,12 +225,12 @@ class YourEvent extends AvtoDev\EventsLogLaravel\Events\AbstractLoggableEvent
 
 Вместе с данным пакетом вам доступны следующие пред-настроенные логгеры `AvtoDev\EventsLogLaravel\Logging\...`:
 
-Класс логгера | Назначение
----------------- | ----------
-`DefaultLogstashLogger` | Пишет лог-записи в формате `logstash` в файл, не видоизменяя тело записи (поле `context` не изменяется)
-`EventsLogstashLogger` | Пишет лог-записи в формате `logstash` в файл, но данные связанные с событиями помещаются в секцию `event`
+Класс логгера              | Назначение
+-------------------------- | ----------
+`DefaultLogstashLogger`    | Пишет лог-записи в формате `logstash` в файл, не видоизменяя тело записи (поле `context` не изменяется)
+`EventsLogstashLogger`     | Пишет лог-записи в формате `logstash` в файл, но данные связанные с событиями помещаются в секцию `event`
 `DefaultUdpLogstashLogger` | Отправляет лог-записи в формате `logstash` по UDP протоколу, не видоизменяя тело записи (поле `context` не изменяется)
-`EventsUdpLogstashLogger` | Пишет лог-записи в формате `logstash` по UDP протоколу, но данные связанные с событиями помещаются в секцию `event`
+`EventsUdpLogstashLogger`  | Пишет лог-записи в формате `logstash` по UDP протоколу, но данные связанные с событиями помещаются в секцию `event`
 
 > Более подробно о них смотрите исходный код
 
