@@ -41,14 +41,10 @@ interface ShouldBeLoggedContract
      */
     public function eventSource(): string;
 
-    /*
+    /**
      * Determine if this event should be skipped.
-     *
-     * Is not required for implementation.
-     *
-     * @see \AvtoDev\EventsLogLaravel\Listeners\EventsSubscriber::skipLoggingConditions()
      *
      * @return bool
      */
-    //public function skipLogging(): bool;
+    public function skipLogging(): bool;
 }

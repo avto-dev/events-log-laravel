@@ -49,7 +49,7 @@ class EventsSubscriber implements EventsSubscriberContract
     /**
      * All events listener.
      *
-     * @param mixed|string         $event
+     * @param string|object        $event
      * @param array<string, mixed> $event_data
      *
      * @return void
@@ -64,7 +64,7 @@ class EventsSubscriber implements EventsSubscriberContract
             if (
                 \is_object($event_datum)
                 && $event_datum instanceof ShouldBeLoggedContract
-                && $this->skipEventLogging($event_datum) === false
+                && $event_datum->skipLogging() === false
             ) {
                 $this->writeEventIntoLog($event_datum, $event_name);
             }
@@ -98,17 +98,5 @@ class EventsSubscriber implements EventsSubscriberContract
         $events->listen('*', function ($event, array $event_data) {
             $this->onAnyEvents($event, $event_data);
         });
-    }
-
-    /**
-     * Make event additional checks using conditions.
-     *
-     * @param ShouldBeLoggedContract $event
-     *
-     * @return bool
-     */
-    protected function skipEventLogging(ShouldBeLoggedContract $event): bool
-    {
-        return \method_exists($event, $method_name = 'skipLogging') && $event->{$method_name}() === true;
     }
 }

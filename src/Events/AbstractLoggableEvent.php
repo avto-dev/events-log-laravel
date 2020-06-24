@@ -39,4 +39,12 @@ abstract class AbstractLoggableEvent implements ShouldBeLoggedContract
     {
         return 'UNKNOWN';
     }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function skipLogging(): bool
+    {
+        return false;
+    }
 }

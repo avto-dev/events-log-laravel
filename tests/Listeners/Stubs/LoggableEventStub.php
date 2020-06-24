@@ -45,4 +45,12 @@ class LoggableEventStub implements ShouldBeLoggedContract
     {
         return 'event source';
     }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function skipLogging(): bool
+    {
+        return false;
+    }
 }
