@@ -7,7 +7,6 @@ namespace AvtoDev\EventsLogLaravel\Logging;
 use Exception;
 use Monolog\Logger;
 use Monolog\Handler\StreamHandler;
-use Monolog\Formatter\LogstashFormatter;
 use AvtoDev\EventsLogLaravel\Contracts\LoggerContract;
 use AvtoDev\EventsLogLaravel\Logging\Formatters\EventsLogstashFormatter;
 
@@ -25,17 +24,16 @@ class EventsLogstashLogger implements LoggerContract
         $formatter = new EventsLogstashFormatter(
             $config['formatter']['app_name'] ?? $this->getAppName() ?? 'app',
             $config['formatter']['system_name'] ?? null,
-            $config['formatter']['extra_prefix'] ?? false,
-            $config['formatter']['context_prefix'] ?? null,
-            $config['formatter']['version'] ?? LogstashFormatter::V1
+            $config['formatter']['extra_prefix'] ?? 'extra',
+            $config['formatter']['context_prefix'] ?? 'context'
         );
 
         $handler = new StreamHandler(
             $config['path'] ?? storage_path('logs/logstash/laravel-events.log'),
-            Logger::toMonologLevel($config['level'] ?? 'debug'),
-            $config['bubble'] ?? true,
+            Logger::toMonologLevel($config['level'] ?? Logger::DEBUG),
+            (bool) ($config['bubble'] ?? true),
             $config['permission'] ?? null,
-            $config['locking'] ?? false
+            (bool) ($config['locking'] ?? false)
         );
 
         $name = $config['name'] ?? app()->environment();

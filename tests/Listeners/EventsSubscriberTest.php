@@ -103,7 +103,6 @@ class EventsSubscriberTest extends AbstractTestCase
             ->once()
             ->getMock();
 
-        /* @var $mock EventsSubscriber */
         $mock->onAnyEvents(\get_class($event), [$event]);
     }
 

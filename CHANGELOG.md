@@ -4,6 +4,19 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog][keepachangelog] and this project adheres to [Semantic Versioning][semver].
 
+## v3.0.0
+
+### Changed
+
+- Minimal required `illuminate/*` package versions now is `7.*`
+- Minimal required PHP version now is `7.2.5`
+- Minimal required `monolog/monolog` version now is `^2.0`
+- `DefaultLogstashLogger`, `DefaultUdpLogstashLogger`, `EventsLogstashLogger` and `EventsUdpLogstashLogger` uses `'extra'` for extra keys (instead `false`) and `'context'` for context keys (instead `null`) inside logstash "fields" by default
+
+### Added
+
+- Method `skipLogging(): bool` in `ShouldBeLoggedContract` interface
+
 ## v2.2.0
 
 ### Changed

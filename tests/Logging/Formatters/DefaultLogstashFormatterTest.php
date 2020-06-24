@@ -1,34 +1,47 @@
 <?php
 
+declare(strict_types = 1);
+
 namespace AvtoDev\EventsLogLaravel\Tests\Logging\Formatters;
 
-use Monolog\Formatter\LogstashFormatter;
+use Illuminate\Support\Str;
 use AvtoDev\EventsLogLaravel\Logging\Formatters\DefaultLogstashFormatter;
 
 /**
- * @group logging
- *
  * @covers \AvtoDev\EventsLogLaravel\Logging\Formatters\DefaultLogstashFormatter<extended>
  */
-class DefaultLogstashFormatterTest extends AbstractLogstashFormatterTestCase
+class DefaultLogstashFormatterTest extends AbstractFormatterTestCase
 {
     /**
-     * Тест метода-форматтера.
+     * @return void
      */
-    public function testFormatter(): void
+    public function testConstants(): void
     {
-        foreach ([LogstashFormatter::V0, LogstashFormatter::V1] as $version) {
-            $instance = new DefaultLogstashFormatter(
-                $app_name = 'test_app',
-                $system_nme = null,
-                $extra_prefix = null,
-                $context_prefix = 'ctxt_',
-                $version
-            );
+        $this->assertSame('log', DefaultLogstashFormatter::ENTRY_TYPE);
+    }
 
-            $formatted = \json_decode($instance->format([]), true);
+    /**
+     * @return void
+     */
+    public function testFormat(): void
+    {
+        $formatter = new DefaultLogstashFormatter(
+            $app = Str::random(),
+            $system = Str::random(),
+            $extra = Str::random(),
+            $context = Str::random()
+        );
 
-            $this->assertEquals('log', $formatted['entry_type']);
-        }
+        $this->assertFormatterGeneratesCorrectJson($formatter, $app, $system, $extra, $context);
+
+        $as_array = \json_decode($formatter->format([
+            'message' => $message = Str::random(),
+            'context' => $context_data = Str::random(),
+        ]), true);
+
+        $this->assertSame('log', $as_array['entry_type']);
+
+        $this->assertSame($message, $as_array['message']);
+        $this->assertSame($context_data, $as_array[$context]);
     }
 }
