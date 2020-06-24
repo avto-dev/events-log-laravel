@@ -1,37 +1,50 @@
 <?php
 
+declare(strict_types = 1);
+
 namespace AvtoDev\EventsLogLaravel\Tests\Logging\Formatters;
 
+use Illuminate\Support\Str;
 use AvtoDev\EventsLogLaravel\Logging\Formatters\EventsLogstashFormatter;
 
 /**
- * @group  logging
- *
  * @covers \AvtoDev\EventsLogLaravel\Logging\Formatters\EventsLogstashFormatter<extended>
  */
-class EventsLogstashFormatterTest extends \AvtoDev\EventsLogLaravel\Tests\AbstractTestCase
+class EventsLogstashFormatterTest extends AbstractFormatterTestCase
 {
     /**
-     * Тест метода-форматтера.
+     * @return void
      */
-    public function testFormatter(): void
+    public function testConstants(): void
     {
-        $instance = new EventsLogstashFormatter(
-            $app_name = 'test_app',
-            $system_nme = 'app',
-            $extra_prefix = 'extra_',
-            $context_prefix = 'ctxt_'
+        $this->assertSame('event', EventsLogstashFormatter::ENTRY_TYPE);
+    }
+
+    /**
+     * @return void
+     */
+    public function testFormat(): void
+    {
+        $formatter = new EventsLogstashFormatter(
+            $app = Str::random(),
+            $system = Str::random(),
+            $extra = Str::random(),
+            $context = Str::random()
         );
 
-        $formatted = \json_decode($instance->format([
+        $this->assertFormatterGeneratesCorrectJson($formatter, $app, $system, $extra, $context);
+
+        $as_array = \json_decode($formatter->format([
+            'message' => $message = Str::random(),
             'context' => [
-                'event' => [
-                    'foo' => 'bar',
-                ],
+                'event' => $context_data = [Str::random(), Str::random()],
             ],
         ]), true);
 
-        $this->assertEquals('event', $formatted['entry_type']);
-        $this->assertEquals('bar', $formatted[$extra_prefix . 'event']['foo']);
+        $this->assertSame('event', $as_array['entry_type']);
+        $this->assertSame($message, $as_array['message']);
+
+        $this->assertSame($message, $as_array['message']);
+        $this->assertSame($context_data, $as_array[$extra . 'event']);
     }
 }

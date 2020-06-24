@@ -4,8 +4,13 @@ declare(strict_types = 1);
 
 namespace AvtoDev\EventsLogLaravel\Logging\Formatters;
 
-class DefaultLogstashFormatter extends AbstractLogstashFormatter
+final class DefaultLogstashFormatter extends AbstractLogstashFormatter
 {
+    /**
+     * Records entry type.
+     */
+    public const ENTRY_TYPE = 'log';
+
     /**
      * Formats a log record.
      *
@@ -15,9 +20,9 @@ class DefaultLogstashFormatter extends AbstractLogstashFormatter
      */
     public function format(array $record): string
     {
-        $formatted = $this->formatRecord($record);
+        $formatted = $this->toLogstashFormat($record);
 
-        $formatted['entry_type'] = 'log';
+        $formatted['entry_type'] = self::ENTRY_TYPE;
 
         return $this->toJson($formatted) . "\n";
     }

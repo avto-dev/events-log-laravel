@@ -13,9 +13,9 @@ abstract class AbstractLogstashFormatter extends \Monolog\Formatter\LogstashForm
      *
      * @see \Monolog\Formatter\LogstashFormatter::format
      */
-    protected function formatRecord(array $record): array
+    protected function toLogstashFormat(array $record): array
     {
-        $record = (array) parent::normalize($record);
+        $record = (array) $this->normalize($record);
 
         if (empty($record['datetime'])) {
             $record['datetime'] = gmdate('c');
