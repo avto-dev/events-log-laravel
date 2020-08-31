@@ -279,7 +279,7 @@ This is open-sourced software licensed under the [MIT License][link_license].
 [badge_pulls]:https://img.shields.io/github/issues-pr/avto-dev/events-log-laravel.svg?style=flat-square&maxAge=180
 [link_releases]:https://github.com/avto-dev/events-log-laravel/releases
 [link_packagist]:https://packagist.org/packages/avto-dev/events-log-laravel
-[link_build_status]:https://travis-ci.org/avto-dev/events-log-laravel
+[link_build_status]:https://github.com/avto-dev/events-log-laravel/actions
 [link_coverage]:https://codecov.io/gh/avto-dev/events-log-laravel/
 [link_changes_log]:https://github.com/avto-dev/events-log-laravel/blob/master/CHANGELOG.md
 [link_issues]:https://github.com/avto-dev/events-log-laravel/issues
