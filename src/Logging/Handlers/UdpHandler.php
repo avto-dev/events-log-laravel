@@ -50,7 +50,7 @@ class UdpHandler extends AbstractProcessingHandler
         $this->host   = $host;
         $this->port   = $port;
 
-        parent::__construct($level, $bubble);
+        parent::__construct($level, $bubble); //@phpstan-ignore-line
 
         $this->socket = new UdpSocket($host, $port);
     }

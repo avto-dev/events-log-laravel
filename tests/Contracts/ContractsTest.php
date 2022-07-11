@@ -9,6 +9,9 @@ use AvtoDev\EventsLogLaravel\Contracts\LoggerContract;
 use AvtoDev\EventsLogLaravel\Contracts\ShouldBeLoggedContract;
 use AvtoDev\EventsLogLaravel\Contracts\EventsSubscriberContract;
 
+/**
+ * @coversNothing
+ */
 class ContractsTest extends AbstractTestCase
 {
     /**

@@ -74,7 +74,7 @@ abstract class AbstractTestCase extends \Illuminate\Foundation\Testing\TestCase
      */
     protected function assertLogFileNotExists(string $file = 'laravel.log'): void
     {
-        $this->assertFileNotExists($this->getStoragePath() . "/logs/{$file}");
+        $this->assertFileDoesNotExist($this->getStoragePath() . "/logs/{$file}");
     }
 
     /**

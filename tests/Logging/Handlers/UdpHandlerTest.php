@@ -82,6 +82,6 @@ class UdpHandlerTest extends AbstractTestCase
             'extra'      => [],
         ];
 
-        $this->assertRegExp('~^ERROR.*formatter~i', $handler->recordToString($record));
+        $this->assertMatchesRegularExpression('~^ERROR.*formatter~i', $handler->recordToString($record));
     }
 }
