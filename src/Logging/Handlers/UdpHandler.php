@@ -36,13 +36,12 @@ class UdpHandler extends AbstractProcessingHandler
      *
      * @param string $host
      * @param int    $port
-     * @param int    $level  The minimum logging level at which this handler will be triggered
      * @param bool   $bubble Whether the messages that are handled can bubble up the stack or not
      * @param bool   $silent Do NOT throws exceptions on socket errors
      */
     public function __construct(string $host,
                                 int $port,
-                                int $level = Logger::DEBUG,
+                                $level = Logger::DEBUG,
                                 bool $bubble = true,
                                 bool $silent = true)
     {
