@@ -8,7 +8,7 @@ use Illuminate\Support\Str;
 use AvtoDev\EventsLogLaravel\Logging\Formatters\DefaultLogstashFormatter;
 
 /**
- * @covers \AvtoDev\EventsLogLaravel\Logging\Formatters\DefaultLogstashFormatter<extended>
+ * @covers \AvtoDev\EventsLogLaravel\Logging\Formatters\DefaultLogstashFormatter
  */
 class DefaultLogstashFormatterTest extends AbstractFormatterTestCase
 {
@@ -34,10 +34,12 @@ class DefaultLogstashFormatterTest extends AbstractFormatterTestCase
 
         $this->assertFormatterGeneratesCorrectJson($formatter, $app, $system, $extra, $context);
 
-        $as_array = \json_decode($formatter->format([
-            'message' => $message = Str::random(),
-            'context' => $context_data = Str::random(),
-        ]), true);
+        $log_record = $this->getLogRecord(
+            message: $message = Str::random(),
+            context: $context_data = [Str::random()],
+        );
+
+        $as_array = \json_decode($formatter->format($log_record), true);
 
         $this->assertSame('log', $as_array['entry_type']);
 

@@ -13,7 +13,7 @@ use Illuminate\Config\Repository as ConfigRepository;
 use AvtoDev\EventsLogLaravel\Listeners\EventsSubscriber;
 
 /**
- * @covers \AvtoDev\EventsLogLaravel\Listeners\EventsSubscriber<extended>
+ * @covers \AvtoDev\EventsLogLaravel\Listeners\EventsSubscriber
  */
 class EventsSubscriberTest extends AbstractTestCase
 {
