@@ -15,14 +15,14 @@ class EventsSubscriber implements EventsSubscriberContract
     /**
      * @var LoggerInterface
      */
-    protected $log_driver;
+    protected LoggerInterface $log_driver;
 
     /**
      * Logger channel name, declared in `./config/logging.php['events_channel']`.
      *
      * @var string|null
      */
-    protected $logger_channel_name;
+    protected ?string $logger_channel_name;
 
     /**
      * Create a new EventsSubscriber instance.
@@ -54,7 +54,7 @@ class EventsSubscriber implements EventsSubscriberContract
      *
      * @return void
      */
-    public function onAnyEvents($event, array $event_data): void
+    public function onAnyEvents(mixed $event, array $event_data): void
     {
         $event_name = \is_string($event)
             ? $event
@@ -79,7 +79,7 @@ class EventsSubscriber implements EventsSubscriberContract
      *
      * @return void
      */
-    public function writeEventIntoLog(ShouldBeLoggedContract $event, $event_name = null): void
+    public function writeEventIntoLog(ShouldBeLoggedContract $event, ?string $event_name = null): void
     {
         $this->log_driver->log($event->logLevel(), $event->logMessage(), [
             'event' => \array_replace_recursive([

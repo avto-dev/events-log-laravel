@@ -5,7 +5,8 @@ declare(strict_types = 1);
 namespace AvtoDev\EventsLogLaravel\Logging\Handlers;
 
 use Throwable;
-use Monolog\Logger;
+use Monolog\Level;
+use Monolog\LogRecord;
 use Monolog\Handler\SyslogUdp\UdpSocket;
 use Monolog\Handler\AbstractProcessingHandler;
 
@@ -14,34 +15,35 @@ class UdpHandler extends AbstractProcessingHandler
     /**
      * @var UdpSocket
      */
-    protected $socket;
+    protected UdpSocket $socket;
 
     /**
      * @var bool
      */
-    protected $silent;
+    protected bool $silent;
 
     /**
      * @var string
      */
-    protected $host;
+    protected string $host;
 
     /**
      * @var int
      */
-    protected $port;
+    protected int $port;
 
     /**
      * UdpHandler constructor.
      *
      * @param string $host
      * @param int    $port
+     * @param Level  $level
      * @param bool   $bubble Whether the messages that are handled can bubble up the stack or not
      * @param bool   $silent Do NOT throws exceptions on socket errors
      */
     public function __construct(string $host,
                                 int $port,
-                                $level = Logger::DEBUG,
+                                Level $level = Level::Debug,
                                 bool $bubble = true,
                                 bool $silent = true)
     {
@@ -97,14 +99,14 @@ class UdpHandler extends AbstractProcessingHandler
     /**
      * Convert record into string.
      *
-     * @param array<string, mixed> $record
+     * @param LogRecord $record
      *
      * @return string
      */
-    public function recordToString(array $record): string
+    public function recordToString(LogRecord $record): string
     {
-        if (isset($record['formatted']) && \is_string($formatted = $record['formatted'])) {
-            return $formatted;
+        if (\is_string($record->formatted)) {
+            return $record->formatted;
         }
 
         return 'ERROR: FORMATTER NOT SET';
@@ -113,13 +115,13 @@ class UdpHandler extends AbstractProcessingHandler
     /**
      * Writes the record down to the log of the implementing handler.
      *
-     * @param array<string, mixed> $record
+     * @param LogRecord $record
      *
      * @throws Throwable
      *
      * @return void
      */
-    protected function write(array $record): void
+    protected function write(LogRecord $record): void
     {
         try {
             $this->socket->write($this->recordToString($record));

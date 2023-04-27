@@ -4,6 +4,7 @@ declare(strict_types = 1);
 
 namespace AvtoDev\EventsLogLaravel\Events;
 
+use Psr\Log\LogLevel;
 use AvtoDev\EventsLogLaravel\Contracts\ShouldBeLoggedContract;
 
 abstract class AbstractLoggableEvent implements ShouldBeLoggedContract
@@ -13,7 +14,7 @@ abstract class AbstractLoggableEvent implements ShouldBeLoggedContract
      */
     public function logLevel(): string
     {
-        return 'info';
+        return LogLevel::INFO;
     }
 
     /**
