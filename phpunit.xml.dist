@@ -1,35 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <phpunit xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:noNamespaceSchemaLocation="https://schema.phpunit.de/9.3/phpunit.xsd"
+         xsi:noNamespaceSchemaLocation="https://schema.phpunit.de/10.0/phpunit.xsd"
          bootstrap="./tests/bootstrap.php"
-         backupGlobals="false"
-         backupStaticAttributes="false"
          colors="true"
-         convertErrorsToExceptions="true"
-         convertNoticesToExceptions="true"
-         convertWarningsToExceptions="true"
-         processIsolation="false"
-         forceCoversAnnotation="true"
-         stopOnFailure="true">
-
-    <testsuites>
-        <testsuite name="Unit">
-            <directory suffix="Test.php">./tests</directory>
-        </testsuite>
-    </testsuites>
-
-    <coverage includeUncoveredFiles="false" processUncoveredFiles="true">
-        <include>
-            <directory suffix=".php">./src</directory>
-        </include>
-        <exclude>
-            <directory>./vendor</directory>
-        </exclude>
-        <report>
-            <clover outputFile="./coverage/clover.xml"/>
-            <html outputDirectory="./coverage/html"/>
-            <text outputFile="php://stdout" showUncoveredFiles="false"/>
-            <xml outputDirectory="./coverage/xml"/>
-        </report>
-    </coverage>
+         stopOnFailure="true"
+         cacheDirectory=".phpunit.cache"
+         requireCoverageMetadata="true">
+  <testsuites>
+    <testsuite name="Unit">
+      <directory>./tests</directory>
+    </testsuite>
+  </testsuites>
+  <coverage includeUncoveredFiles="false">
+    <include>
+      <directory suffix=".php">./src</directory>
+    </include>
+    <exclude>
+      <directory>./vendor</directory>
+    </exclude>
+    <report>
+      <clover outputFile="./coverage/clover.xml"/>
+      <html outputDirectory="./coverage/html"/>
+      <text outputFile="php://stdout"/>
+      <xml outputDirectory="./coverage/xml"/>
+    </report>
+  </coverage>
 </phpunit>
