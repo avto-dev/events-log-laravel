@@ -17,7 +17,7 @@ The format is based on [Keep a Changelog][keepachangelog] and this project adher
 - Up minimal `monolog/monolog` version `3.0`
 - Up minimal `phpstan` version to `1.10`
 - Up minimal `phpunit` version `10.0`
-- Up `composer` version to `2.5.5`
+- Composer version up to `2.5.5`
 
 ## v3.3.0
 
