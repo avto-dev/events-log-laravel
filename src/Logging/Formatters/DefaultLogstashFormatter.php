@@ -4,6 +4,8 @@ declare(strict_types = 1);
 
 namespace AvtoDev\EventsLogLaravel\Logging\Formatters;
 
+use Monolog\LogRecord;
+
 final class DefaultLogstashFormatter extends AbstractLogstashFormatter
 {
     /**
@@ -14,11 +16,11 @@ final class DefaultLogstashFormatter extends AbstractLogstashFormatter
     /**
      * Formats a log record.
      *
-     * @param array<string, mixed> $record
+     * @param LogRecord $record
      *
      * @return string
      */
-    public function format(array $record): string
+    public function format(LogRecord $record): string
     {
         $formatted = $this->toLogstashFormat($record);
 

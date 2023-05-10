@@ -6,7 +6,7 @@ use AvtoDev\EventsLogLaravel\Listeners\EventsSubscriber;
 use AvtoDev\EventsLogLaravel\Contracts\EventsSubscriberContract;
 
 /**
- * @covers \AvtoDev\EventsLogLaravel\ServiceProvider<extended>
+ * @covers \AvtoDev\EventsLogLaravel\ServiceProvider
  */
 class ServiceProviderTest extends AbstractTestCase
 {

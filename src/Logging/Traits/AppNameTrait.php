@@ -17,7 +17,13 @@ trait AppNameTrait
     protected function getAppName(): ?string
     {
         try {
-            return Container::getInstance()->make(Repository::class)->get('app.name');
+            /** @var Repository $config_repository */
+            $config_repository = Container::getInstance()->make(Repository::class);
+
+            /** @var string|null $app_name */
+            $app_name = $config_repository->get('app.name');
+
+            return $app_name;
         } catch (\Throwable $e) {
             return null;
         }

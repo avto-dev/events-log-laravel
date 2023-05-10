@@ -7,7 +7,6 @@ namespace AvtoDev\EventsLogLaravel\Tests\Logging;
 use Monolog\Logger;
 use InvalidArgumentException;
 use Monolog\Handler\HandlerInterface;
-use AvtoDev\EventsLogLaravel\Tests\AbstractTestCase;
 use AvtoDev\EventsLogLaravel\Logging\Handlers\UdpHandler;
 use AvtoDev\EventsLogLaravel\Logging\EventsUdpLogstashLogger;
 use AvtoDev\EventsLogLaravel\Logging\Formatters\EventsLogstashFormatter;
@@ -15,9 +14,9 @@ use AvtoDev\EventsLogLaravel\Logging\Formatters\EventsLogstashFormatter;
 /**
  * @group logging
  *
- * @covers \AvtoDev\EventsLogLaravel\Logging\EventsUdpLogstashLogger<extended>
+ * @covers \AvtoDev\EventsLogLaravel\Logging\EventsUdpLogstashLogger
  */
-class EventsUdpLogstashLoggerTest extends AbstractTestCase
+class EventsUdpLogstashLoggerTest extends AbstractLoggingTestCase
 {
     /**
      * @return void

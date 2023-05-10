@@ -2,19 +2,19 @@
 
 namespace AvtoDev\EventsLogLaravel\Tests\Logging;
 
+use Monolog\Level;
 use Monolog\Logger;
 use Monolog\Handler\StreamHandler;
 use Monolog\Handler\HandlerInterface;
-use AvtoDev\EventsLogLaravel\Tests\AbstractTestCase;
 use AvtoDev\EventsLogLaravel\Logging\EventsLogstashLogger;
 use AvtoDev\EventsLogLaravel\Logging\Formatters\EventsLogstashFormatter;
 
 /**
  * @group logging
  *
- * @covers \AvtoDev\EventsLogLaravel\Logging\EventsLogstashLogger<extended>
+ * @covers \AvtoDev\EventsLogLaravel\Logging\EventsLogstashLogger
  */
-class EventsLogstashLoggerTest extends AbstractTestCase
+class EventsLogstashLoggerTest extends AbstractLoggingTestCase
 {
     /**
      * Test factory with default parameters.
@@ -38,7 +38,6 @@ class EventsLogstashLoggerTest extends AbstractTestCase
             'locking'    => null,
         ];
 
-        /** @var Logger $instance */
         $instance = (new EventsLogstashLogger)($config);
         $this->assertInstanceOf(Logger::class, $instance);
 
@@ -46,7 +45,7 @@ class EventsLogstashLoggerTest extends AbstractTestCase
         $handler = $instance->getHandlers()[0];
         $this->assertInstanceOf(StreamHandler::class, $handler);
         $this->assertEquals($path, $handler->getUrl());
-        $this->assertEquals(Logger::DEBUG, $handler->getLevel());
+        $this->assertEquals(Level::Debug, $handler->getLevel());
 
         $formatter = $handler->getFormatter();
         $this->assertInstanceOf(EventsLogstashFormatter::class, $formatter);

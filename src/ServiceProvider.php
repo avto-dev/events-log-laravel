@@ -49,7 +49,10 @@ class ServiceProvider extends \Illuminate\Support\ServiceProvider
             /** @var ConfigRepository $config */
             $config = $app->make(ConfigRepository::class);
 
-            return $config->get('logging.events_channel', env('EVENTS_LOG_CHANNEL', 'default'));
+            /** @var string $log_channel */
+            $log_channel = $config->get('logging.events_channel', env('EVENTS_LOG_CHANNEL', 'default'));
+
+            return $log_channel;
         });
     }
 
@@ -61,9 +64,15 @@ class ServiceProvider extends \Illuminate\Support\ServiceProvider
     protected function registerSubscriber(): void
     {
         $this->app->bind(EventsSubscriberContract::class, function (Container $app): EventsSubscriberContract {
+            /** @var LogManager $log_manager */
+            $log_manager = $app->make(LogManager::class);
+
+            /** @var string|null $log_channel */
+            $log_channel = $app->make('log.events.channel');
+
             return new EventsSubscriber(
-                $app->make(LogManager::class),
-                $app->make('log.events.channel')
+                $log_manager,
+                $log_channel,
             );
         });
     }
