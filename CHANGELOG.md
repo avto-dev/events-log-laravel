@@ -4,10 +4,11 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog][keepachangelog] and this project adheres to [Semantic Versioning][semver].
 
-## Unreleased
+## v3.4.1
 
-### Changed
+### Fixed
 
+- `CHANGELOG.md` updated with: Drop `Laravel: v9` support
 - Minimal `Laravel` version `10.0`
 - Build status shield
 
