@@ -12,7 +12,6 @@ The format is based on [Keep a Changelog][keepachangelog] and this project adher
 
 ### Changed
 
-- Minimal require PHP version now is `8.1`
 - Minimal Laravel version now is `10.0`
 - Version of `composer` in docker container updated up to `2.7.4`
 - Updated dev dependencies
