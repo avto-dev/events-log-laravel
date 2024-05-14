@@ -13,7 +13,7 @@ The format is based on [Keep a Changelog][keepachangelog] and this project adher
 ### Changed
 
 - Minimal Laravel version now is `10.0`
-- Version of `composer` in docker container updated up to `2.7.4`
+- Version of `composer` in docker container updated up to `2.7.6`
 - Updated dev dependencies
 
 ## v3.4.1
