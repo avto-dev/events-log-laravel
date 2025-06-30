@@ -8,6 +8,12 @@ The format is based on [Keep a Changelog][keepachangelog] and this project adher
 
 ### Added
 
+- Laravel `12.x` support
+
+## v3.5.0
+
+### Added
+
 - Laravel `11.x` support
 
 ### Changed
