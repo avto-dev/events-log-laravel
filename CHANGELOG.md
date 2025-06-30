@@ -9,7 +9,8 @@ The format is based on [Keep a Changelog][keepachangelog] and this project adher
 ### Added
 
 - Laravel `12.x` support
-
+- Using `docker` with `compose` plugin instead of `docker-compose` for test environment
+-
 ## v3.5.0
 
 ### Added
